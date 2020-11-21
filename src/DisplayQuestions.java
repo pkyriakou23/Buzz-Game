@@ -2,10 +2,11 @@ import java.awt.*;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
+
 public class DisplayQuestions {
 
-    QuestionsNon a=new QuestionsNon();
-    int numQ=a.getNum_questions();
+    SelectQuestions a=new SelectQuestions();
+    int numQ=a.getNumberOfQuestions();
     HashSet<Integer> opRan=new HashSet<Integer>();
     int i,j;
     public void display()
