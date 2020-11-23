@@ -1,19 +1,18 @@
 import java.util.Scanner;
 
 public class RightAnswer {
+
     // Οι ερωτήσεις ενός γύρου
     SelectQuestions questions;
     DisplayQuestions d;
 
-    public void RightAnswer(){
+    public RightAnswer(){
         questions=new SelectQuestions();
-        questions.fillTable();
         d=new DisplayQuestions();
     }
 
-    public void addScore(Players player){
-        player.setScore(player.getScore() + 1000);
-    }
+    public void addScore(Players player)
+    { player.setScore(player.getScore() + 1000); }           //πρόσθεση 1000 πόντων για σωστή απάντηση
 
     public void displayQuestions(Players player){
         Scanner input=new Scanner(System.in);
@@ -22,11 +21,12 @@ public class RightAnswer {
 
         for(int i=0;i<5;i++) {
             d.display();
+            System.out.print("Your answer : ");
             answer = input.nextLine();
             checkAnswer = d.isCorrect(answer);
             if (checkAnswer) {
                 System.out.println("You score +1000");
-                addScore(player);
+                addScore(player);                                //πρόσθεση σκορ
             }
         }
     }

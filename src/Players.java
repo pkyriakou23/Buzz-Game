@@ -5,7 +5,7 @@ public class Players {
     private int score;
     private int numberOfRounds;
 
-    public void Players(){
+    public Players(){
         name=null;
         score=0;
         numberOfRounds=0;
@@ -20,6 +20,8 @@ public class Players {
     }
     public void setNumOfRounds(){
         numberOfRounds++;
+
+        System.out.println("\n"+"Your score is: "+score+"\n");              //εμφάνιση σκορ στο τέλος κάθε γύρου
         System.out.println("Round " + numberOfRounds);
     }
     public String getName(){
