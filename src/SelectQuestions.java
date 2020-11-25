@@ -40,14 +40,10 @@ public class SelectQuestions {
 
 
     public boolean isRepeat(int numberOfQuestion)
-    {
-        return (questions[numberOfQuestion][1].equals("yes"));
+    { return (questions[numberOfQuestion][1].equals("yes")); }
 
-    }
-
-    public void setYes(int numberOfQuestion){
-        questions[numberOfQuestion][1]="yes";
-    }
+    public void setYes(int numberOfQuestion)
+    { questions[numberOfQuestion][1]="yes"; }
 
     //fill tables with questions,answers and options
     public void fillTable()
