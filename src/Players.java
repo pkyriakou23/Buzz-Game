@@ -1,3 +1,7 @@
+/**
+ * Κλάση που αναπαριστά τον παίχτη που διαγωνίζεται.
+ */
+
 import java.util.Scanner;
 
 public class Players {
@@ -5,11 +9,19 @@ public class Players {
     private int score;
     private int numberOfRounds;
 
+    /**
+     * Κατασκευαστής κλάσης Players.
+     * Αρχικοποιεί το όνομα του παίχτη, το σκορ του και τον αριθμό των γύρων στους οποίους συμμετείχε.
+     */
     public Players(){
         name=null;
         score=0;
         numberOfRounds=0;
     }
+
+    /**
+     * Setters για το όνομα του παίχτη, το σκορ και τον αριθμό των γύρων.
+     */
     public void setName(){
         Scanner input=new Scanner(System.in);
         System.out.print("Enter your name: ");
@@ -24,21 +36,41 @@ public class Players {
         System.out.println("\n"+"Your score is: "+score+"\n");              //εμφάνιση σκορ στο τέλος κάθε γύρου
         System.out.println("Round " + numberOfRounds);
     }
+
+    /**
+     *Επιστρέφει το όνομα του παίχτη.
+     * @return name
+     */
     public String getName(){
         return name;
     }
+
+    /**
+     * Επιστρέφει το σκορ του παίχτη.
+     * @return score
+     */
     public int getScore(){
         return score;
     }
+
+    /**
+     * Επιστρέφει τον αριθμό των γύρων που έχει παίξει μέχρι στιγμής ο παίχτης.
+     * @return numberOfRounds
+     */
     public int getNumOfRounds(){
         return numberOfRounds;
     }
 
-
+    /**
+     * Εμφανίζει στην οθόνη το σκορ του παίχτη.
+     */
     public void showScore(){
         System.out.println(score);
     }
 
+    /**
+     * Εμφανίζει τον αριθμό των γύρων στους οποίους διαγωνίστηκε ο παίχτης.
+     */
     public void showRound(){
         System.out.println(numberOfRounds);
     }

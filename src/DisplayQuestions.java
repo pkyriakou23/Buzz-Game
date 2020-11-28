@@ -1,3 +1,7 @@
+/**
+ * Κλάση που βοηθά στην εμφάνιση των ερωτήσεων - επιλογών - απαντήσεων στην οθόνη.
+ */
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
@@ -8,6 +12,10 @@ public class DisplayQuestions {
     ArrayList<Integer> opRan;
     int i, j;
 
+    /**
+     * Κατασκευαστής DisplayQuestions.
+     * Αρχικοποιεί τον πίνακα τον ερωτήσεων, τον αριθμό της τρέχουσας ερώτησης και την δομή opRan.
+     */
     public DisplayQuestions()
     {
         a = new SelectQuestions();
@@ -15,6 +23,11 @@ public class DisplayQuestions {
         numQ = a.getNumberOfQuestions();
         opRan = new ArrayList<>();
     }
+
+    /**
+     * Εμφάνιση ερώτησης στην οθόνη του υπολογιστή.
+     * Η λίστα opRan βοηθά στην εμφάνιση της αρίμησης a,b,c,d μπροστά από τις επιλογές της κάθε ερώτησης.
+     */
     public void display()
     {
         Random r=new Random();
@@ -49,11 +62,19 @@ public class DisplayQuestions {
 
     }
 
+    /**
+     * Έλεγχος αν η απάντηση που δόθηκε από τον διαγωνιζόμενο είναι σωστή.
+     * @param ans η απάντηση του διαγωνιζόμενου δείνετε ως παράμετρος
+     * @return Επιστρέφει true αν η απάντηση που δόθηκε είναι σωστή, ενώ αν είναι λανθασμένη επιστρέφει false.
+     */
     public boolean isCorrect(String ans)
     {
         return (ans.equals(a.getAnswers(i)));
     }
 
+    /**
+     * @return Επιστρέφει τον αριθμό της τρέχουσας ερώτησης.
+     */
     public int getNumberOfCurrentQuestion(){
         return i;
     }
