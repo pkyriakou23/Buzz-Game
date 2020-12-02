@@ -10,7 +10,7 @@ public class Players {
     private int numberOfRounds;
 
     /**
-     * Κατασκευαστής κλάσης Players.
+     * Κατασκευαστής / Constructor
      * Αρχικοποιεί το όνομα του παίχτη, το σκορ του και τον αριθμό των γύρων στους οποίους συμμετείχε.
      */
     public Players(){
@@ -20,16 +20,28 @@ public class Players {
     }
 
     /**
-     * Setters για το όνομα του παίχτη, το σκορ και τον αριθμό των γύρων.
+     * Setters για το όνομα του παίχτη.
+     * Ζητά από τον διαγωνιζόμενο το όνομα του και το αποθηκεύει στην αντίστοιχη μεταβλητή name.
      */
     public void setName(){
         Scanner input=new Scanner(System.in);
         System.out.print("Enter your name: ");
         this.name=input.nextLine();
     }
+
+    /**
+     *Setter για το σκορ.
+     * @param previousScore Το σκορ του παίχτη μέχρι στιγμής.
+     */
     public void setScore(int previousScore){
         this.score=previousScore;
     }
+
+    /**
+     * Setter για τον αριθμό των γύρων
+     * Αυξάνει τον αριθμό των γύρων στους οποίους έχει διαγωνιστεί ο παίχτης κατά ένα και εμφανίζει στην οθόνη
+     * τους πόντους που έχει συγκεντρώσει ο διαγωνιζόμενος, καθώς και τον αριθμό του επόμενου γύρου.
+     */
     public void setNumOfRounds(){
         numberOfRounds++;
 

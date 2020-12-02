@@ -12,8 +12,9 @@
  * Ο αριθμός των ερωτήσεων, καθώς και τα σχετικά δεδομένα τους είναι περιορισμένος.
  * Οι ερωτήσεις είναι αποθηκευμένες σε απλά αρχεία κειμένου .txt, για δική μας ευκολία,
  * και όχι στη μνήμη του υπολογιστή (στον κώδικα του προγράμματος) όπως ζητήθηκε.
- *  AUTHOR: PANAYIOTIS KYRIACOU
- *          ALEXANDRA MPROYNTZOY
+ *
+ * @author PANAYIOTIS KYRIACOU
+ * @author ALEXANDRA PROUNTZOU
  */
 
 import java.util.Random;
@@ -24,7 +25,7 @@ public class Main {
     // Τύπος Ερωτήσεων (typeOfQuestion) => 0:Right Answer (type1), 1:Betting (type2)
 
     public static void main(String[] args) {
-        System.out.println("Hello, let's play Buzz!");
+        System.out.printf("Hello, let's play Buzz!" + "%n" + "Please enter full answers." + "%n");
         Players playerA = new Players();
         RightAnswer type1;
         Betting type2;
@@ -48,18 +49,20 @@ public class Main {
             boolean checkAnswer = false;
 
             for (int i = 0; i < 5; i++) {
-                d.display();
 
                 if (typeOfQuestion == 1) {
-                    System.out.print("Your bet: ");
+                    System.out.printf("%n" + "Category: " + d.questionsCategory(d.getNumberOfCurrentQuestion()) + "%n" + "%n");
+                    System.out.printf("Bet 250, 500, 750 or 1000 points!" + "%n" + "Your bet: ");
                     bet = inBet.nextInt();
                     while (!(bet == 250 || bet == 500 || bet == 750 || bet == 1000))        //έλεγχος για σωστή είσοδο στο ποντάρισμα
                     {
                         System.out.println("You can bet only 250, 500, 750 or 1000 points!");
-                        System.out.println("Give bet again: ");
+                        System.out.print("Give bet again: ");
                         bet = inBet.nextInt();
                     }
                 }
+
+                d.display(typeOfQuestion);
 
                 System.out.print("Your answer : ");
                 answer = input.nextLine();

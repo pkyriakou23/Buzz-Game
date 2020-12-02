@@ -11,7 +11,7 @@ public class Betting {
     SelectQuestions questions;
 
     /**
-     * Κατασκευαστής Κλάσης Betting: Καθορίζει τις ερωτήσεις ενός γύρου
+     * Κατασκευαστής / Constructor
      */
     public  Betting()
     {

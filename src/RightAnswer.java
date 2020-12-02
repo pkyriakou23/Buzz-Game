@@ -10,7 +10,7 @@ public class RightAnswer {
     SelectQuestions questions;
 
     /**
-     * Κατασκευαστής κλάσης RightAnswer: Καθορίζει τις ερωτήσεις ενός γύρου
+     * Κατασκευαστής / Constructor
      */
     public RightAnswer()
     {

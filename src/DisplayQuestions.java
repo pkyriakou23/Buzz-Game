@@ -13,8 +13,7 @@ public class DisplayQuestions {
     int i, j;
 
     /**
-     * Κατασκευαστής DisplayQuestions.
-     * Αρχικοποιεί τον πίνακα τον ερωτήσεων, τον αριθμό της τρέχουσας ερώτησης και την δομή opRan.
+     * Κατασκευαστής / Constructor
      */
     public DisplayQuestions()
     {
@@ -25,18 +24,30 @@ public class DisplayQuestions {
     }
 
     /**
+     * Τυχαία επιλογή αριθμού ερώτησης i, η οποία θα ερωτηθεί στον διαγωνιζόμενο.
+     */
+    private int getRandomI(){
+        Random r=new Random();
+        do {
+            i=r.nextInt(numQ);
+        }
+        while (a.isRepeat(i));          //έλεγχος για μη επανάληψη ερωτήσεων
+        return i;
+    }
+
+    /**
      * Εμφάνιση ερώτησης στην οθόνη του υπολογιστή.
      * Η λίστα opRan βοηθά στην εμφάνιση της αρίμησης a,b,c,d μπροστά από τις επιλογές της κάθε ερώτησης.
+     * Έχει γίνει αντιστοίχιση των γραμμάτων a,b,c,d στους κατάλληλους αριθμούς του πίνακα ASCII.
      */
-    public void display()
+    public void display(int typeOfQuestion)
     {
         Random r=new Random();
         String[] opt=new String[4];
 
-        do {
-            i=r.nextInt(numQ);
-        }
-        while (a.isRepeat(i));                          //έλεγχος για μη επανάληψη ερωτήσεων
+        if(typeOfQuestion!=1){
+            i=getRandomI();
+        }                          //έλεγχος για μη επανάληψη ερωτήσεων
         System.out.println();
         System.out.println(a.getQuestions(i));
 
@@ -76,6 +87,18 @@ public class DisplayQuestions {
      * @return Επιστρέφει τον αριθμό της τρέχουσας ερώτησης.
      */
     public int getNumberOfCurrentQuestion(){
+        i=getRandomI();
         return i;
+    }
+
+    /**
+     * Επιστρέφει την κατηγορία της ερώτησης με αριθμό numberOfQuestion.
+     * Χρησιμοποιείται κυρίως στον τύπο γύρου ποντάρισμα σαν αρχική πληροφορία στην οποία θα βασιστεί ο παίχτης
+     * για να ποντάρει το ποσό που επιθυμεί.
+     * @param numberOfQuestion ο αριθμός της ερώτησης
+     * @return την κατηγορία της ερώτησης με τον παραπάνω αριθμό
+     */
+    public String questionsCategory(int numberOfQuestion){
+        return a.getCategory(numberOfQuestion);
     }
 }
