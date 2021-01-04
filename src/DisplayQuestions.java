@@ -31,7 +31,7 @@ public class DisplayQuestions {
         do {
             i=r.nextInt(numQ);
         }
-        while (a.isRepeat(i));          //έλεγχος για μη επανάληψη ερωτήσεων
+        while (a.isRepeat(i)); //έλεγχος για μη επανάληψη ερωτήσεων
         return i;
     }
 
@@ -47,7 +47,7 @@ public class DisplayQuestions {
 
         if(typeOfQuestion!=1){
             i=getRandomI();
-        }                          //έλεγχος για μη επανάληψη ερωτήσεων
+        }                   //έλεγχος για μη επανάληψη ερωτήσεων
         System.out.println();
         System.out.println(a.getQuestions(i));
 
