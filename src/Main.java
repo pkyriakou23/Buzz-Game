@@ -31,7 +31,7 @@ public class Main {
         Betting type2;
         DisplayQuestions d = new DisplayQuestions();
 
-        int bet = 0;
+
         int typeOfQuestion;
         type1 = new RightAnswer();
         type2 = new Betting();
@@ -43,47 +43,13 @@ public class Main {
             Random r = new Random();
             typeOfQuestion = r.nextInt(2);      //τυχαιότητα στην επιλογή τύπος γύρου
 
-            Scanner input = new Scanner(System.in);
-            Scanner inBet = new Scanner(System.in);
-            String answer;
-            boolean checkAnswer = false;
 
             for (int i = 0; i < 5; i++) {
 
-                if (typeOfQuestion == 1) {
-                    System.out.printf("%n" + "Category: " + d.questionsCategory(d.getNumberOfCurrentQuestion()) + "%n" + "%n");
-                    System.out.printf("Bet 250, 500, 750 or 1000 points!" + "%n" + "Your bet: ");
-                    bet = inBet.nextInt();
-                    while (!(bet == 250 || bet == 500 || bet == 750 || bet == 1000))        //έλεγχος για σωστή είσοδο στο ποντάρισμα
-                    {
-                        System.out.println("You can bet only 250, 500, 750 or 1000 points!");
-                        System.out.print("Give bet again: ");
-                        bet = inBet.nextInt();
-                    }
-                }
-
-                d.display(typeOfQuestion);
-
-                System.out.print("Your answer : ");
-                answer = input.nextLine();
-                checkAnswer = d.isCorrect(answer);
-
-                if (checkAnswer) {
-
-                    if (typeOfQuestion == 0) {
-                        System.out.println("You score +1000");
-                        type1.addScore(playerA);                        //πρόσθεση σκορ
-                    } else {
-                        System.out.println("You score +" + bet);
-                        type2.addScore(playerA, bet);
-                    }
-                } else {
-                    if (typeOfQuestion == 1) {
-                        type2.minusScore(playerA, bet);                         //αφαίρεση σκορ
-                        System.out.println("You loose " + bet + " points!");
-                    }
-
-                }
+                if (typeOfQuestion == 1)
+                    type2.displayBetting(d,playerA);
+                if (typeOfQuestion == 0)
+                    type1.displayRightAnswer(d,playerA);
             }
         }
         System.out.println("Your final score is: " + playerA.getScore());

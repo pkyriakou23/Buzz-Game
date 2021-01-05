@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * Τύπος γύρου: Σωστή Απάντηση
  *
@@ -24,6 +26,25 @@ public class RightAnswer {
     public void addScore(Players player)
     {
         player.setScore(player.getScore() + 1000);
+    }
+
+    public void displayRightAnswer(DisplayQuestions d, Players p )
+    {
+        String answer;
+        boolean checkAnswer = false;
+
+        Scanner input = new Scanner(System.in);
+
+        d.display(0);
+
+        System.out.print("Your answer : ");
+        answer = input.nextLine();
+        checkAnswer = d.isCorrect(answer);
+        if (checkAnswer)
+        {
+            System.out.println("You score +1000");
+            addScore(p);                        //πρόσθεση σκορ
+        }
     }
 
 }
