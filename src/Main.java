@@ -22,7 +22,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    // Τύπος Ερωτήσεων (typeOfQuestion) => 0:Right Answer (type1), 1:Betting (type2)
+    // Τύπος Ερωτήσεων (typeOfQuestion) => 0:Right Answer (type1), 1:Betting (type2), 2:Time (type3)
 
     public static void main(String[] args) {
         System.out.printf("Hello, let's play Buzz!" + "%n" + "Please enter full answers." + "%n");
