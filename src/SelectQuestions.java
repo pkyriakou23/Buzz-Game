@@ -67,7 +67,7 @@ public class SelectQuestions {
      */
     public String getAnswers(int numberOfQuestion)
     {
-        System.out.println("The correct answer is "+answers[numberOfQuestion]);
+       // System.out.println("The correct answer is "+answers[numberOfQuestion]);
         return answers[numberOfQuestion];
     }
 

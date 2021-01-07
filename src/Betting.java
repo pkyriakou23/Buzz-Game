@@ -59,7 +59,7 @@ public class Betting {
             bet = inBet.nextInt();
         }
 
-        d.display(1);
+      //  d.display(1);
         System.out.print("Your answer : ");
         answer = input.nextLine();
         checkAnswer = d.isCorrect(answer);
