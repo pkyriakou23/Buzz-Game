@@ -25,23 +25,26 @@ public class Main {
     // Τύπος Ερωτήσεων (typeOfQuestion) => 0:Right Answer (type1), 1:Betting (type2), 2:Time (type3)
 
     public static void main(String[] args)  {
-        System.out.printf("Hello, let's play Buzz!" + "%n" + "Please enter full answers." + "%n");
+        /*System.out.printf("Hello, let's play Buzz!" + "%n" + "Please enter full answers." + "%n");
         Players playerA = new Players();
         RightAnswer type1;
-      //  Betting type2;
-        DisplayQuestions d = new DisplayQuestions();
-
+        //Betting type2;
 
         int typeOfQuestion;
         type1 = new RightAnswer();
-       // type2 = new Betting();
-        playerA.setName();
+        //type2 = new Betting();
+        playerA.setName();*/
 
-        BuzzQuizWorld a=new BuzzQuizWorld(d);
+        DisplayQuestions d = new DisplayQuestions();
+        QuestionsWindow a=new QuestionsWindow();
 
         int i=0; boolean flag=true;
 
-         a.game();
+        Menu test=new Menu();
+        test.createMenuScreen(a,d);
+        test.start();
+
+        //a.game();
 
 //        while (playerA.getNumOfRounds() < 4)               //αριθμός γύρων παιχνιδιού: 4
 //        {
@@ -58,8 +61,8 @@ public class Main {
 //                    type1.displayRightAnswer(d,playerA);
 //            }
 //        }
-        System.out.println("Your final score is: " + playerA.getScore());
-        System.out.println("GOOD GAME BYE BYE");
+        //System.out.println("Your final score is: " + playerA.getScore());
+        //System.out.println("GOOD GAME BYE BYE");
     }
 
 

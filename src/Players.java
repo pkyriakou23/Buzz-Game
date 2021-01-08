@@ -23,10 +23,9 @@ public class Players {
      * Setters για το όνομα του παίχτη.
      * Ζητά από τον διαγωνιζόμενο το όνομα του και το αποθηκεύει στην αντίστοιχη μεταβλητή name.
      */
-    public void setName(){
-//        Scanner input=new Scanner(System.in);
-//        System.out.print("Enter your name: ");
-//        this.name=input.nextLine();
+    public void setName(String name){
+        this.name=name;
+
     }
 
     /**
