@@ -37,9 +37,11 @@ public class Main {
        // type2 = new Betting();
         playerA.setName();
 
-        BuzzQuizWorld a=new BuzzQuizWorld();
-        for (int i=0;i<4;i++)
-         a.game(d);
+        BuzzQuizWorld a=new BuzzQuizWorld(d);
+
+        int i=0; boolean flag=true;
+
+         a.game();
 
 //        while (playerA.getNumOfRounds() < 4)               //αριθμός γύρων παιχνιδιού: 4
 //        {
