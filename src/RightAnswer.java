@@ -35,7 +35,7 @@ public class RightAnswer {
 
         Scanner input = new Scanner(System.in);
 
-        d.display(0);
+       // d.display(0);
 
         System.out.print("Your answer : ");
         answer = input.nextLine();

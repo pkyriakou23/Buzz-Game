@@ -40,19 +40,23 @@ public class DisplayQuestions {
      * Η λίστα opRan βοηθά στην εμφάνιση της αρίμησης a,b,c,d μπροστά από τις επιλογές της κάθε ερώτησης.
      * Έχει γίνει αντιστοίχιση των γραμμάτων a,b,c,d στους κατάλληλους αριθμούς του πίνακα ASCII.
      */
-    public void display(int typeOfQuestion)
-    {
-        Random r=new Random();
-        String[] opt=new String[4];
+    public String questions(int typeOfQuestion) {
 
-        if(typeOfQuestion!=1){
-            i=getRandomI();
+        System.out.println("mesa");
+
+        if (typeOfQuestion != 1) {
+            i = getRandomI();
         }                   //έλεγχος για μη επανάληψη ερωτήσεων
-        System.out.println();
-        System.out.println(a.getQuestions(i));
+     //   System.out.println();
+      //  System.out.println(a.getQuestions(i));
 
-        a.setYes(i);                                    // yes το πεδίο στον πίνακα με τις ερωτήσεις για να ξέρει το σύστημα οτι ρωτήθηκε
-
+        a.setYes(i);                    // yes το πεδίο στον πίνακα με τις ερωτήσεις για να ξέρει το σύστημα οτι ρωτήθηκε
+        return a.getQuestions(i);
+    }
+    public String[] options()
+    {
+        Random r = new Random();
+        String[] opt = new String[4];
         opt=a.getOptions(i);
         do{                                             //τυχαιότητα στην εμφάνιση επιλογών
             j=r.nextInt(4);
@@ -61,15 +65,22 @@ public class DisplayQuestions {
         }
         while (opRan.size()<4);
 
-        int a=97;                   //ASCII
-        String ch="";
-        Iterator<Integer> z=opRan.iterator();
-        while(z.hasNext()) {
-            ch=Character.toString((char)a);                 //για εμφάνιση μπροστά a,b,c,d
-            System.out.print(ch+'.'+opt[z.next()]+"   ");
-            a++;
-        }
-        System.out.println();
+        String[] temp=new String[4];
+        for(int a=0;a<4;a++)
+            temp[a]=opt[opRan.get(a)];
+        return temp;
+
+
+
+//        int a=97;                   //ASCII
+//        String ch="";
+//        Iterator<Integer> z=opRan.iterator();
+//        while(z.hasNext()) {
+//            ch=Character.toString((char)a);                 //για εμφάνιση μπροστά a,b,c,d
+//            System.out.print(ch+'.'+opt[z.next()]+"   ");
+//            a++;
+//        }
+//        System.out.println();
 
     }
 
