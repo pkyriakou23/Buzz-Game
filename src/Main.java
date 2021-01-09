@@ -35,13 +35,10 @@ public class Main {
         //type2 = new Betting();
         playerA.setName();*/
 
-        DisplayQuestions d = new DisplayQuestions();
-        QuestionsWindow a=new QuestionsWindow();
-
-        int i=0; boolean flag=true;
+        PlayersGUI pGui=new PlayersGUI();
 
         Menu test=new Menu();
-        test.createMenuScreen(a,d);
+        test.createMenuScreen();
         test.start();
 
         //a.game();

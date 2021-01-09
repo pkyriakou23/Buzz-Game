@@ -9,34 +9,51 @@ public class PlayersGUI {
     private JButton playersChoice1;
     private JButton playersChoice2;
     private JFrame playersFrame;
-    private Players a,b;
     private boolean solo;
+    private String nameA,nameB;
+    private boolean done;
+    private int scoreA,scoreB;
+    private int numberOfRoundsA,numberOfRoundsB;
+    private Round r;
 
     public PlayersGUI(){
         playersFrame=new JFrame();
         playersChoice1=new JButton();
         playersChoice2=new JButton();
         playerPanel=new JPanel();
-        a=new Players();
-        b=new Players();
+        nameA=null;
+        nameB=null;
         solo=true;
+        done=false;
+        scoreA=0;
+        numberOfRoundsA=0;
+        scoreB=0;
+        numberOfRoundsB=0;
+        r=new Round();
     }
 
-    public void choosePlayer(){
+    public void choosePlayer(JFrame mainScreen){
 
         playersChoice1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 solo=true;
                 UIManager.put("OptionPane.messageFont", new Font("Snap ITC", Font.PLAIN, 20));
-                String nameA = JOptionPane.showInputDialog(null,"Enter your name: ");
-                a.setName(nameA);
+                nameA = JOptionPane.showInputDialog(null,"Enter your name: ");
                 if(nameA!=null) {
                     JOptionPane.showMessageDialog(null, "PlayerA: " + nameA);
                     playersFrame.setVisible(false);
+                    done=true;
                 }
                 else if(nameA==null)
                     JOptionPane.showMessageDialog(null,"Error! Name not declared!");
+                try {
+                    r.startRound(mainScreen);
+                } catch (InterruptedException interruptedException) {
+                    interruptedException.printStackTrace();
+                }
+
+                mainScreen.setVisible(false);
             }
         });
 
@@ -45,24 +62,23 @@ public class PlayersGUI {
             public void actionPerformed(ActionEvent e) {
                 solo=false;
                 UIManager.put("OptionPane.messageFont", new Font("Snap ITC", Font.PLAIN, 20));
-                String nameA = JOptionPane.showInputDialog("Enter your name: ");
-                Players a=new Players();
+                nameA = JOptionPane.showInputDialog("Enter your name: ");
                 if(nameA!=null)
                     JOptionPane.showMessageDialog(null, "PlayerA: " + nameA);
                 else if(nameA==null){
                     JOptionPane.showMessageDialog(null,"Error! Name not declared!");
                 }
-                a.setName(nameA);
 
-                String nameB = JOptionPane.showInputDialog("Enter your name: ");
-                b.setName(nameB);
+                nameB = JOptionPane.showInputDialog("Enter your name: ");
                 if(nameB!=null)
                     JOptionPane.showMessageDialog(null, "PlayerB: " + nameB);
                 else if(nameB==null)
                     JOptionPane.showMessageDialog(null,"Error! Name not declared!");
 
-                if(nameA!=null && nameB!=null)
+                if(nameA!=null && nameB!=null) {
                     playersFrame.setVisible(false);
+                    done=true;
+                }
             }
         });
 
@@ -83,15 +99,33 @@ public class PlayersGUI {
     }
 
     public String getNameA(){
-        return a.getName();
+        return nameA;
     }
 
     public String getNameB(){
-        return b.getName();
+        return nameB;
     }
 
     public boolean getNumberOfPlayers(){
         return solo;
+    }
+
+    public boolean getDone(){
+        return done;
+    }
+
+    public void playerInfo(){
+        JLabel label=new JLabel(nameA);
+        label.setFont(new Font("Snap ITC", Font.BOLD, 20));
+        JOptionPane.showConfirmDialog(null,label,"Player's Info",JOptionPane.YES_OPTION);
+    }
+
+    public int setNumOfRoundsA(){
+        return (numberOfRoundsA++);
+    }
+
+    public void setNumOfRoundsB(){
+        numberOfRoundsB++;
     }
 
 }

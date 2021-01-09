@@ -9,9 +9,10 @@ public class Menu {
     private JPanel buttonsPanel;
     private MenuButtons buttons;
     private JButton play;
+    private QuestionsWindow question;
     private JLabel title;
     private JButton exit;
-    //private PlayersGUI p;
+    private PlayersGUI p;
 
     public Menu(){
         menu=new JFrame();
@@ -19,19 +20,20 @@ public class Menu {
         buttonsPanel=new JPanel();
         buttons=new MenuButtons();
         play=new JButton();
+        question=new QuestionsWindow();
         title=new JLabel();
         exit=new JButton();
-        // p=new PlayersGUI();
+        p=new PlayersGUI();
     }
 
-    public void createMenuScreen(QuestionsWindow q,DisplayQuestions disp){
+    public void createMenuScreen(){
         menu.setTitle("Buzz Quiz World Game");
-        //menu.setLocationRelativeTo(null);
-        Toolkit t=Toolkit.getDefaultToolkit();
+        menu.setLocationRelativeTo(null);
+        /*Toolkit t=Toolkit.getDefaultToolkit();
         Dimension d=t.getScreenSize();
         int x=(d.width-menu.getWidth())/2;
         int y=(d.height-menu.getHeight())/2;
-        menu.setLocation(x,y);
+        menu.setLocation(x,y);*/
         menu.setSize(800,300);
         menu.setResizable(true);
         menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,10 +60,7 @@ public class Menu {
         play.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //PlayersGUI p=new PlayersGUI();
-                //p.choosePlayer();
-                q.QuestionWindow(disp);
-                q.game();
+                p.choosePlayer(menu);
             }
         });
         play.setText("PLAY");
@@ -86,6 +85,10 @@ public class Menu {
 
     public void start(){
         menu.setVisible(true);
+    }
+
+    public void hideMenu(){
+        menu.setVisible(false);
     }
 
 }

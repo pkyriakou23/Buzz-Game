@@ -1,4 +1,4 @@
-import java.util.Scanner;
+/*import java.util.Scanner;
 
 /**
  * Τύπος γύρου: Σωστή Απάντηση
@@ -7,14 +7,14 @@ import java.util.Scanner;
  * Κάθε παίχτης που απαντάει σωστά κερδίζει 1000 πόντους.
  */
 
-public class RightAnswer {
+/*public class RightAnswer {
 
     SelectQuestions questions;
 
     /**
      * Κατασκευαστής / Constructor
      */
-    public RightAnswer()
+  /*  public RightAnswer()
     {
         questions=new SelectQuestions();
     }
@@ -23,7 +23,7 @@ public class RightAnswer {
      *Προσθήκη 1000 πόντων για σωστή απάντηση.
      * @param player ο παίχτης που διαγωνίζεται
      */
-    public void addScore(Players player)
+  /*  public void addScore(Players player)
     {
         player.setScore(player.getScore() + 1000);
     }
@@ -45,6 +45,27 @@ public class RightAnswer {
             System.out.println("You score +1000");
             addScore(p);                        //πρόσθεση σκορ
         }
+    }
+
+}*/
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.concurrent.TimeUnit;
+
+public class RightAnswer {
+    private QuestionsWindow questions;
+    private JFrame frame;
+
+    public RightAnswer(){
+        questions=new QuestionsWindow();
+        frame=new JFrame();
+    }
+
+    public void showRightAnswer(DisplayQuestions d,JFrame menuFrame) throws InterruptedException {
+        questions.QuestionsWindow(d,frame,menuFrame);
+        questions.game();
     }
 
 }
