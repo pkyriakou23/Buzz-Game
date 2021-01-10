@@ -11,6 +11,7 @@ public class MenuButtons {
     public MenuButtons(){
         information=new JFrame();
         desc=new JLabel();
+        information.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     public void showInfo(){

@@ -8,14 +8,18 @@ public class Round {
     private JFrame frame;
     private RightAnswer type1;
     private DisplayQuestions d;
+    boolean[] rounds;
 
     public Round(){
         frame=new JFrame();
         type1=new RightAnswer();
         d=new DisplayQuestions();
+        rounds=new boolean[5];
+        for(int i=0;i<5;i++)
+            rounds[i]=false;
     }
 
-    public void startRound(JFrame menuFrame) throws InterruptedException {
+    public void startRound(JFrame menuFrame,int scoreA,int scoreB,boolean solo) throws InterruptedException {
         frame.setTitle("Round");
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -28,11 +32,9 @@ public class Round {
         frame.add(label,BorderLayout.CENTER);
         frame.setVisible(true);
 
-        updateScreen(menuFrame);
-    }
+        //random kali oti erthei
 
-    public void updateScreen(JFrame menuFrame) throws InterruptedException {
-        type1.showRightAnswer(d,menuFrame);
+        type1.showRightAnswer(d,frame,menuFrame,scoreA,scoreB,solo,rounds);
     }
 
 

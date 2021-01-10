@@ -49,22 +49,19 @@
 
 }*/
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.concurrent.TimeUnit;
 
 public class RightAnswer {
-    private QuestionsWindow questions;
-    private JFrame frame;
+    private RightAnswerGui questions;
+   // private JFrame frame;
 
     public RightAnswer(){
-        questions=new QuestionsWindow();
-        frame=new JFrame();
+        questions=new RightAnswerGui();
+        //frame=new JFrame();
+       // frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
-    public void showRightAnswer(DisplayQuestions d,JFrame menuFrame) throws InterruptedException {
-        questions.QuestionsWindow(d,frame,menuFrame);
+    public void showRightAnswer(DisplayQuestions d,JFrame frame,JFrame menuFrame,int scoreA, int scoreB,boolean solo,boolean[] rounds) throws InterruptedException {
+        questions.QuestionsWindow(d,frame,menuFrame,scoreA,scoreB,solo,rounds);
         questions.game();
     }
 

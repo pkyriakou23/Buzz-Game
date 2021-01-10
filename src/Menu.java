@@ -9,7 +9,7 @@ public class Menu {
     private JPanel buttonsPanel;
     private MenuButtons buttons;
     private JButton play;
-    private QuestionsWindow question;
+    private RightAnswerGui question;
     private JLabel title;
     private JButton exit;
     private PlayersGUI p;
@@ -20,7 +20,7 @@ public class Menu {
         buttonsPanel=new JPanel();
         buttons=new MenuButtons();
         play=new JButton();
-        question=new QuestionsWindow();
+        question=new RightAnswerGui();
         title=new JLabel();
         exit=new JButton();
         p=new PlayersGUI();

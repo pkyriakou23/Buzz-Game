@@ -42,7 +42,7 @@ public class DisplayQuestions {
      */
     public String questions(int typeOfQuestion) {
 
-        System.out.println("mesa");
+
 
         if (typeOfQuestion != 1) {
             i = getRandomI();

@@ -48,7 +48,7 @@ public class PlayersGUI {
                 else if(nameA==null)
                     JOptionPane.showMessageDialog(null,"Error! Name not declared!");
                 try {
-                    r.startRound(mainScreen);
+                    r.startRound(mainScreen,scoreA,scoreB,solo);
                 } catch (InterruptedException interruptedException) {
                     interruptedException.printStackTrace();
                 }
