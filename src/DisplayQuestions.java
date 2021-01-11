@@ -26,12 +26,13 @@ public class DisplayQuestions {
     /**
      * Τυχαία επιλογή αριθμού ερώτησης i, η οποία θα ερωτηθεί στον διαγωνιζόμενο.
      */
-    private int getRandomI(){
+    public int getRandomI(){
         Random r=new Random();
         do {
             i=r.nextInt(numQ);
         }
-        while (a.isRepeat(i)); //έλεγχος για μη επανάληψη ερωτήσεων
+        while (a.isRepeat(i));              //έλεγχος για μη επανάληψη ερωτήσεων
+        //εμφανσιη
         return i;
     }
 
@@ -47,8 +48,7 @@ public class DisplayQuestions {
         if (typeOfQuestion != 1) {
             i = getRandomI();
         }                   //έλεγχος για μη επανάληψη ερωτήσεων
-     //   System.out.println();
-      //  System.out.println(a.getQuestions(i));
+
 
         a.setYes(i);                    // yes το πεδίο στον πίνακα με τις ερωτήσεις για να ξέρει το σύστημα οτι ρωτήθηκε
         return a.getQuestions(i);
@@ -94,13 +94,7 @@ public class DisplayQuestions {
         return (ans.equals(a.getAnswers(i)));
     }
 
-    /**
-     * @return Επιστρέφει τον αριθμό της τρέχουσας ερώτησης.
-     */
-    public int getNumberOfCurrentQuestion(){
-        i=getRandomI();
-        return i;
-    }
+
 
     /**
      * Επιστρέφει την κατηγορία της ερώτησης με αριθμό numberOfQuestion.

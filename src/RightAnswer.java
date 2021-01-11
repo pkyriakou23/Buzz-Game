@@ -60,8 +60,8 @@ public class RightAnswer {
        // frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
-    public void showRightAnswer(DisplayQuestions d,JFrame frame,JFrame menuFrame,int scoreA, int scoreB,boolean solo,boolean[] rounds) throws InterruptedException {
-        questions.QuestionsWindow(d,frame,menuFrame,scoreA,scoreB,solo,rounds);
+    public void showRightAnswer(DisplayQuestions d,JFrame menuFrame,int scoreA, int scoreB,boolean solo,boolean[] rounds) throws InterruptedException {
+        questions.QuestionsWindow(d,menuFrame,scoreA,scoreB,solo,rounds);
         questions.game();
     }
 

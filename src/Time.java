@@ -51,16 +51,16 @@
 import javax.swing.*;
 
 public class Time {
-    private RightAnswerGui questions;
+    private TimeGui questions;
 
     public Time(){
-        questions=new RightAnswerGui();
+        questions=new TimeGui();
 
     }
 
-    public void showTime(DisplayQuestions d,JFrame frame,JFrame menuFrame) throws InterruptedException {
-//        questions.QuestionsWindow(d,frame,menuFrame,1);
-//        questions.game(d,1);
+    public void showTime(DisplayQuestions d,JFrame menuFrame,int scoreA, int scoreB,boolean solo,boolean[] rounds) throws InterruptedException {
+        questions.QuestionsWindow(d,menuFrame,scoreA,scoreB,solo,rounds);
+        questions.game();
     }
 
 }

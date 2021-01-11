@@ -82,13 +82,15 @@ import javax.swing.*;
 //}
 //
 public class Betting {
-    private RightAnswerGui questions;
-    public void Betting()
+    private BettingGui questions;
+    public  Betting()
     {
-        questions=new RightAnswerGui();
+        questions=new BettingGui();
     }
-    public void showBetting(DisplayQuestions d, JFrame frame, JFrame menuFrame) throws InterruptedException {
-//        questions.QuestionsWindow(d,frame,menuFrame,2);
-//        questions.game(d,2);
+    public void showBetting(DisplayQuestions d,JFrame menuFrame,int scoreA, int scoreB,boolean solo,boolean[] rounds) throws InterruptedException {
+        questions.QuestionsWindow(d,menuFrame,scoreA,scoreB,solo,rounds);
+
+        questions.game(d);
 //    }
-}}
+}
+}

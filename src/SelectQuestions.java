@@ -11,7 +11,7 @@ public class SelectQuestions {
     private String[] category;
     private String[][] options;
     private String[] answers;
-    private final int NUMBER_OF_QUESTIONS=20;           //αριθμός ερωτήσεων στο file
+    private final int NUMBER_OF_QUESTIONS=80;           //αριθμός ερωτήσεων στο file
     private final int NUMBER_OF_OPTIONS=4;
 
     /**
@@ -32,6 +32,7 @@ public class SelectQuestions {
      * Στο πρώτο μέρος ανάπτυξης της εργασίας θα χρησιμοποιηθούν είκοσι (20) ερωτήσεις, δηλαδή πέντε (5) από κάθε κατηγορία.
      */
     public SelectQuestions() {
+
         questions = new String[NUMBER_OF_QUESTIONS][2];
         category = new String[NUMBER_OF_QUESTIONS];
         answers = new String[NUMBER_OF_QUESTIONS];
@@ -108,27 +109,17 @@ public class SelectQuestions {
     public void fillTable()
     {
         int i=0;
-        int qtyOfQuestionsInEachCategory=NUMBER_OF_QUESTIONS/4;
-        int counter=0;
-        String categories[]={"History","Athletics","Science","Showbiz"};
         //fill questions
         try
         {
 
             File myObj = new File("questions.txt");
-            // System.out.println("fill");
             Scanner myReader = new Scanner(myObj);
             int j=0;
             while (myReader.hasNextLine())
             {
                 questions[i][0]  = myReader.nextLine();
                 questions[i][1]="no";                       //στο πεδίο για αν ρωτήθηκε
-                counter++;
-                category[i]=categories[j];
-                if(counter==qtyOfQuestionsInEachCategory){
-                    counter=0;
-                    j++;
-                }
                 i++;
             }
         }
@@ -180,6 +171,25 @@ public class SelectQuestions {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+
+        //fill categories
+        i=0;
+        try
+        {
+            File myObj = new File("categories.txt");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine())
+            {
+                category[i] = myReader.nextLine();
+                i++;
+            }
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
 
     }
 }

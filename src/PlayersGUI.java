@@ -39,14 +39,14 @@ public class PlayersGUI {
             public void actionPerformed(ActionEvent e) {
                 solo=true;
                 UIManager.put("OptionPane.messageFont", new Font("Snap ITC", Font.PLAIN, 20));
-                nameA = JOptionPane.showInputDialog(null,"Enter your name: ");
+                nameA = JOptionPane.showInputDialog(null,"ΔΩΣΕ ΤΟ ΟΝΟΜΑ ΣΟΥ: ");
                 if(nameA!=null) {
-                    JOptionPane.showMessageDialog(null, "PlayerA: " + nameA);
+                    JOptionPane.showMessageDialog(null, "ΠΑΙΚΤΗΣ1: " + nameA);
                     playersFrame.setVisible(false);
                     done=true;
                 }
                 else if(nameA==null)
-                    JOptionPane.showMessageDialog(null,"Error! Name not declared!");
+                    JOptionPane.showMessageDialog(null,"Error! ΔΕΝ ΕΔΩΣΕΣ ΟΝΟΜΑ!");
                 try {
                     r.startRound(mainScreen,scoreA,scoreB,solo);
                 } catch (InterruptedException interruptedException) {
@@ -62,18 +62,18 @@ public class PlayersGUI {
             public void actionPerformed(ActionEvent e) {
                 solo=false;
                 UIManager.put("OptionPane.messageFont", new Font("Snap ITC", Font.PLAIN, 20));
-                nameA = JOptionPane.showInputDialog("Enter your name: ");
+                nameA = JOptionPane.showInputDialog("ΔΩΣΕ ΤΟ ΟΝΟΜΑ: ");
                 if(nameA!=null)
-                    JOptionPane.showMessageDialog(null, "PlayerA: " + nameA);
+                    JOptionPane.showMessageDialog(null, "ΠΑΙΚΤΗΣ1: " + nameA);
                 else if(nameA==null){
-                    JOptionPane.showMessageDialog(null,"Error! Name not declared!");
+                    JOptionPane.showMessageDialog(null,"Error! ΔΕΝ ΕΔΩΣΕΣ ΟΝΟΜΑ!");
                 }
 
-                nameB = JOptionPane.showInputDialog("Enter your name: ");
+                nameB = JOptionPane.showInputDialog("ΔΩΣΕ ΟΝΟΜΑ: ");
                 if(nameB!=null)
-                    JOptionPane.showMessageDialog(null, "PlayerB: " + nameB);
+                    JOptionPane.showMessageDialog(null, "ΠΑΙΚΤΗΣ1: " + nameB);
                 else if(nameB==null)
-                    JOptionPane.showMessageDialog(null,"Error! Name not declared!");
+                    JOptionPane.showMessageDialog(null,"Error! ΔΕΝ ΕΔΩΣΕΣ ΟΝΟΜΑ!");
 
                 if(nameA!=null && nameB!=null) {
                     playersFrame.setVisible(false);
@@ -84,13 +84,13 @@ public class PlayersGUI {
 
         playerPanel.setLayout(new GridLayout(2,1));
 
-        playersChoice1.setText("1 Player");
+        playersChoice1.setText("1 ΠΑΙΚΤΗΣ");
         playersChoice1.setFont(new Font("Snap ITC",Font.PLAIN,45));
         playerPanel.add(playersChoice1);
-        playersChoice2.setText("2 Players");
+        playersChoice2.setText("2 ΠΑΙΚΤΗΣ");
         playersChoice2.setFont(new Font("Snap ITC",Font.PLAIN,45));
         playerPanel.add(playersChoice2);
-        playersFrame.setTitle("Players Screen");
+        playersFrame.setTitle("ΟΘΟΝΗ ΠΑΙΚΤΗ");
         playersFrame.setSize(400,400);
         playersFrame.setLocationRelativeTo(null);
         playersFrame.add(playerPanel,BorderLayout.CENTER);
@@ -117,7 +117,7 @@ public class PlayersGUI {
     public void playerInfo(){
         JLabel label=new JLabel(nameA);
         label.setFont(new Font("Snap ITC", Font.BOLD, 20));
-        JOptionPane.showConfirmDialog(null,label,"Player's Info",JOptionPane.YES_OPTION);
+        JOptionPane.showConfirmDialog(null,label,"ΠΛΗΡΟΦΟΡΙΕΣ",JOptionPane.YES_OPTION);
     }
 
     public int setNumOfRoundsA(){

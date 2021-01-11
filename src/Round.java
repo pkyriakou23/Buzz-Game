@@ -2,40 +2,53 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class Round {
     private JFrame frame;
-    private RightAnswer type1;
+
+
+
     private DisplayQuestions d;
     boolean[] rounds;
 
     public Round(){
         frame=new JFrame();
-        type1=new RightAnswer();
+
         d=new DisplayQuestions();
-        rounds=new boolean[5];
-        for(int i=0;i<5;i++)
+        rounds=new boolean[4];
+        for(int i=0;i<4;i++)
             rounds[i]=false;
     }
 
     public void startRound(JFrame menuFrame,int scoreA,int scoreB,boolean solo) throws InterruptedException {
-        frame.setTitle("Round");
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(400,400);
-        frame.setResizable(true);
-        frame.setBackground(Color.cyan);
-        JLabel label=new JLabel("Round 1");
-        label.setFont(new Font("Snap ITC",Font.PLAIN,45));
-        label.setVisible(true);
-        frame.add(label,BorderLayout.CENTER);
-        frame.setVisible(true);
+        Random r=new Random();
+        int ran=r.nextInt(4);
 
-        //random kali oti erthei
+        if(ran==0) {
+            RightAnswer type1;
+            type1 = new RightAnswer();
+            type1.showRightAnswer(d, menuFrame, scoreA, scoreB, solo, rounds);
+        }
+        if(ran==1)
+        {
+            Time type2;
+            type2=new Time();
+            type2.showTime(d,menuFrame,scoreA,scoreB,solo,rounds);
+        }
+        if(ran==2)
+        {
+            Betting type3;
+            type3=new Betting();
+            type3.showBetting(d,menuFrame,scoreA,scoreB,solo,rounds);
+        }
 
-        type1.showRightAnswer(d,frame,menuFrame,scoreA,scoreB,solo,rounds);
     }
 
-
+    private void visible(JLabel l)
+    {
+        l.setVisible(true);
+        frame.setVisible(true);
+    }
 }

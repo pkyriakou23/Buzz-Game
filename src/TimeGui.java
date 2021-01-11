@@ -2,10 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class RightAnswerGui {
+public class TimeGui {
     private JFrame frame;
     private JFrame fr;
     private JLabel question;
@@ -23,9 +24,12 @@ public class RightAnswerGui {
     private int counter;
     private int player;
 
+
+    long start;
+    long stop;
     String answer;
 
-    public RightAnswerGui(){
+    public TimeGui(){
         frame=new JFrame();
         fr=new JFrame();
         question=new JLabel();
@@ -40,20 +44,21 @@ public class RightAnswerGui {
         counter=0;
         player=0;
 
+
     }
-
-
 
 
     public void QuestionsWindow(DisplayQuestions d,JFrame menuFrame,int scoreA,int scoreB,boolean solo,boolean[] rounds) throws InterruptedException
     {
-        rounds[0]=true;
+        rounds[1]=true;
         if (solo)
             player=1;
+
         showRound(rounds);
+        Ascore=scoreA;
         Bscore=scoreB;
 
-        frame.setTitle("ΕΡΩΣΤΗΣΕΙΣ");
+        frame.setTitle("ΕΡΩΤΗΣΕΙΣ");
         frame.setSize(700,500);
         frame.setLocationRelativeTo(null);
         frame.setResizable(true);
@@ -86,7 +91,7 @@ public class RightAnswerGui {
         ans4.setFont(new Font("Verdana", Font.BOLD, 22));
 
         ansBox.setLayout(new GridLayout(2, 2));
-        //   ansBox.setFont(new Font("Arial", Font.BOLD, 20));
+
         ansBox.add(ans1);
         ansBox.add(ans2);
         ansBox.add(ans3);
@@ -102,7 +107,6 @@ public class RightAnswerGui {
                 correctAnswer();
 
                 if (ans1.getText().equals(answer)) {
-                    scoreLabel.setText("ΚΕΡΔΙΖΕΙΣ +1000");   //+scoreGain
                     if(solo || player==0)
                         Ascore=updateScore(Ascore);
                     else
@@ -133,7 +137,6 @@ public class RightAnswerGui {
                 correctAnswer();
 
                 if (ans2.getText().equals(answer)) {
-                    scoreLabel.setText("ΚΕΡΔΙΖΕΙΣ +1000");
                     if(solo || player==0)
                         Ascore=updateScore(Ascore);
                     else
@@ -164,7 +167,6 @@ public class RightAnswerGui {
                 correctAnswer();
 
                 if (ans3.getText().equals(answer)) {
-                    scoreLabel.setText("ΚΕΡΔΙΖΕΙΣ +1000");
                     if(solo || player==0)
                         Ascore=updateScore(Ascore);
                     else
@@ -193,7 +195,7 @@ public class RightAnswerGui {
                 correctAnswer();
 
                 if (ans4.getText().equals(answer)) {
-                    scoreLabel.setText("ΚΕΡΔΙΖΕΙΣ +1000");
+
                     if(solo || player==0)
                         Ascore=updateScore(Ascore);
                     else
@@ -208,6 +210,7 @@ public class RightAnswerGui {
 
             public void mouseReleased(MouseEvent e) {
                 try {
+                        updateScreenTime();
                     if(solo || player==0)
                         updateQuestion(d,menuFrame,Ascore,solo,rounds);
                     else
@@ -222,9 +225,13 @@ public class RightAnswerGui {
     }
 
 
-    public void game()  {
+    public void game() throws InterruptedException {
 
+
+        start=System.currentTimeMillis();
         frame.setVisible(true);
+        updateScreenTime();
+
     }
 
 
@@ -236,43 +243,44 @@ public class RightAnswerGui {
                 sum++;
 
 
-        fr.setTitle("Round");
+        fr.setTitle("ΓΥΡΟΣ");
 
         fr.setLocation(40,200);
         fr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        fr.setSize(400,400);
-        fr.setResizable(true);
+        fr.setSize(300,300);
+        fr.setResizable(false);
         fr.setBackground(Color.cyan);
-        JLabel label=new JLabel("Round "+sum);
+        JLabel label=new JLabel("ΓΥΡΟΣ "+sum);
         label.setFont(new Font("Snap ITC",Font.PLAIN,45));
         label.setVisible(true);
         fr.add(label,BorderLayout.CENTER);
         fr.setVisible(true);
     }
     public void correctAnswer()  {
-        question.setText("Correct answer is "+answer);
+        stop=System.currentTimeMillis();
+        question.setText("Η ΣΩΣΤΗ ΑΠΑΝΤΗΣΗ ΕΙΝΑΙ "+answer);
         question.setFont(new Font("Verdana",Font.BOLD,22));
         question.setVisible(true);
     }
     private void updateQuestion(DisplayQuestions d,JFrame menuFrame,int score,boolean solo,boolean[] rounds) throws InterruptedException {
         counter++;
-        if(counter==5) {
-            JLabel label = new JLabel("ΤΕΛΟΣ ΓΥΡΟΥ! ΤΟ ΣΚΟΡ ΣΟΥ ΕΙΝΑΙ "+score);
+        if (counter == 5) {
+            JLabel label = new JLabel("ΤΕΛΟΣ ΓΥΡΟΥ! ΤΟ ΣΚΟΡ ΣΟΥ ΕΙΝΑΙ " + score);
             TimeUnit.SECONDS.sleep(2);
-            if (player==0 )
-            { counter = 0; player=1; }
-            else {
-                if(player==1 && !solo )
-                    label.setText("ΤΕΛΟΣ ΓΥΡΟΥ! ΤΟ ΣΚΟΡ ΣΟΥ ΕΙΝΑΙ "+score);
+            if (player == 0) {
+                counter = 0;
+                player = 1;
+            } else {
+                if (player == 1 && !solo)
+                    label.setText("ΤΕΛΟΣ ΓΥΡΟΥ! ΤΟ ΣΚΟΡ ΣΟΥ ΕΙΝΑΙ " + (int) score);
                 frame.setVisible(false);
-                JFrame frame1 = new JFrame("ΤΕΛΟΣ ΓΥΡΟΥ!");
+                JFrame frame1 = new JFrame("ΤΕΛΟΣ ΓΥΡΟΥ");
                 frame1.setSize(200, 200);
                 frame1.setLocationRelativeTo(null);
 
                 frame1.add(label, BorderLayout.CENTER);
                 frame1.setVisible(true);
-
-                fr.setVisible(false);
+                frame.setVisible(false);
                 //kalo to epomeno round me tixaiotita
                 Random r=new Random();
                 int ran=0;
@@ -291,16 +299,15 @@ public class RightAnswerGui {
                     ran=r.nextInt(4);
                     if(!rounds[ran])
                     {
-                        if(ran==1)
-                        {
-                            Time t=new Time();
-                            t.showTime(d,menuFrame,Ascore,Bscore,solo,rounds);
-
-                        }
                         if(ran==2)
                         {
                             Betting b=new Betting();
                             b.showBetting(d,menuFrame,Ascore,Bscore,solo,rounds);
+                        }
+                        if(ran==0)
+                        {
+                            RightAnswer b=new RightAnswer();
+                            b.showRightAnswer(d,menuFrame,Ascore,Bscore,solo,rounds);
                         }
                         if(ran==3)
                         {
@@ -309,25 +316,40 @@ public class RightAnswerGui {
 
 
 
-
-                        break;
+                        flag=true;
                     }
 
                 }
 
 
             }
+        } else {
+            TimeUnit.SECONDS.sleep(2);
+            question.setText("<HTML>" + d.questions(0) + "</HTML>");
+            updateScreenTime();
+          //  question.setVisible(true);
+            start = System.currentTimeMillis();
         }
-
-        TimeUnit.SECONDS.sleep(2);
-        question.setText("<HTML>"+d.questions(0)+"</HTML>");
-        question.setVisible(true);
-
     }
+
+    public void updateScreenTime() {
+
+       scoreLabel.setText("Έχεις 5 δευτερόλεπτα να απαντήσεις, 'Οσο γρηγορότερα τόσο πιο πολλούς πόντους θα πάρεις");
+        scoreLabel.setFont(new Font("Arial", Font.ITALIC, 15));
+    }
+
+
     private int updateScore(int s)
     {
+        long diff=stop-start;
 
-        s+=1000;
+        if(diff<5000)
+        {
+            s+=(int)((5000-diff)*0.2);
+            scoreLabel.setText("ΤΟ ΣΚΟΡ ΣΟΥ +"+(int)((5000-diff)*0.2));
+        }
+        else
+            scoreLabel.setText("ΕΚΤΟΣ ΧΡΟΝΟΥ");
 
         return s;
 
@@ -339,11 +361,13 @@ public class RightAnswerGui {
         ans2.setText("<HTML>"+opt[1]+"</HTML>");
         ans3.setText("<HTML>"+opt[2]+"</HTML>");
         ans4.setText("<HTML>"+opt[3]+"</HTML>");
-        ansBox.setVisible(true);
+       // ansBox.setVisible(true);
         for (int i = 0; i < 4; i++)
             if (d.isCorrect(opt[i]))
                 answer = opt[i];
-        scoreLabel.setVisible(false);
+
+        updateScreenTime();
+        scoreLabel.setVisible(true);
     }
 
 }
