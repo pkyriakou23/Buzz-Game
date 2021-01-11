@@ -25,7 +25,7 @@ public class Round {
     public void startRound(JFrame menuFrame,int scoreA,int scoreB,boolean solo) throws InterruptedException {
         Random r=new Random();
         int ran=r.nextInt(4);
-
+ran=0;
         if(ran==0) {
             RightAnswer type1;
             type1 = new RightAnswer();

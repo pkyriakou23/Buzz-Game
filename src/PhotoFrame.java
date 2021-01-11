@@ -12,15 +12,12 @@ public class PhotoFrame {
         label=new JLabel();
         frame.add(label, BorderLayout.CENTER);
         frame.setSize(1300,1300);
-        frame.setLocation(1200,100);
+        frame.setLocation(1000,100);
     }
     public void showImage(int count)
     {
-        String filename="image/"+count+".jpeg";
-        URL imageURL=this.getClass().getResource(filename); //this.getClass().getResource(filename);
-        // imageURL = imageURL.getClass().getResource(filename);
-        //   System.out.println(filename);
-        System.out.println(imageURL);
+        String filename="image/"+count+".jpg";
+        URL imageURL=this.getClass().getResource(filename);
         ImageIcon icon = new ImageIcon(imageURL);
         label.setIcon(icon);
         label.setToolTipText(filename);

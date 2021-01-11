@@ -24,6 +24,7 @@ public class RightAnswerGui {
     private int player;
 
     String answer;
+    String answer1;
 
     public RightAnswerGui(){
         frame=new JFrame();
@@ -69,15 +70,7 @@ public class RightAnswerGui {
 
         String[] options = new String[4];
 
-
-        options = d.options();
-        for (int i = 0; i < 4; i++)
-            if (d.isCorrect(options[i]))
-                answer = options[i];
-        ans1.setText(options[0]);
-        ans2.setText(options[1]);
-        ans3.setText(options[2]);
-        ans4.setText(options[3]);
+        updateOptions(d);
 
         ans1.setSize(100, 100);
         ans1.setFont(new Font("Verdana", Font.BOLD, 22));
@@ -178,6 +171,7 @@ public class RightAnswerGui {
 
             public void mouseReleased(MouseEvent e) {
                 try {
+
                     if(solo || player==0)
                         updateQuestion(d,menuFrame,Ascore,solo,rounds);
                     else
@@ -243,14 +237,19 @@ public class RightAnswerGui {
         fr.setSize(400,400);
         fr.setResizable(true);
         fr.setBackground(Color.cyan);
-        JLabel label=new JLabel("Round "+sum);
+        JLabel label=new JLabel("ROUND "+sum);
+        JLabel l=new JLabel("Right Answer");
+
         label.setFont(new Font("Snap ITC",Font.PLAIN,45));
+        l.setFont(new Font("Snap ITC",Font.BOLD,20));
         label.setVisible(true);
+        l.setVisible(true);
         fr.add(label,BorderLayout.CENTER);
+        fr.add(l,BorderLayout.PAGE_END);
         fr.setVisible(true);
     }
     public void correctAnswer()  {
-        question.setText("Correct answer is "+answer);
+        question.setText("Η ΣΩΣΤΗ ΑΠΑΝΤΗΣΗ ΕΙΝΑΙ "+answer1);
         question.setFont(new Font("Verdana",Font.BOLD,22));
         question.setVisible(true);
     }
@@ -342,7 +341,9 @@ public class RightAnswerGui {
         ansBox.setVisible(true);
         for (int i = 0; i < 4; i++)
             if (d.isCorrect(opt[i]))
-                answer = opt[i];
+                answer1 = opt[i];
+         answer="<HTML>"+answer1+"</HTML>";
+
         scoreLabel.setVisible(false);
     }
 

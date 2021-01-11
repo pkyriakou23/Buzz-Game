@@ -8,6 +8,7 @@ import java.util.Random;
 
 public class DisplayQuestions {
     SelectQuestions a;
+    PhotoFrame photo;
     int numQ;
     ArrayList<Integer> opRan;
     int i, j;
@@ -17,6 +18,7 @@ public class DisplayQuestions {
      */
     public DisplayQuestions()
     {
+        photo=new PhotoFrame();
         a = new SelectQuestions();
         a.fillTable();
         numQ = a.getNumberOfQuestions();
@@ -32,7 +34,8 @@ public class DisplayQuestions {
             i=r.nextInt(numQ);
         }
         while (a.isRepeat(i));              //έλεγχος για μη επανάληψη ερωτήσεων
-        //εμφανσιη
+
+
         return i;
     }
 
@@ -50,7 +53,11 @@ public class DisplayQuestions {
         }                   //έλεγχος για μη επανάληψη ερωτήσεων
 
 
-        a.setYes(i);                    // yes το πεδίο στον πίνακα με τις ερωτήσεις για να ξέρει το σύστημα οτι ρωτήθηκε
+        a.setYes(i);            // yes το πεδίο στον πίνακα με τις ερωτήσεις για να ξέρει το σύστημα οτι ρωτήθηκε
+        if(i>40&&i<60)
+            photo.showImage(i-40);
+        else
+            photo.hideImage();
         return a.getQuestions(i);
     }
     public String[] options()

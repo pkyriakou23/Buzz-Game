@@ -2,6 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class PlayersGUI {
 
@@ -39,9 +44,9 @@ public class PlayersGUI {
             public void actionPerformed(ActionEvent e) {
                 solo=true;
                 UIManager.put("OptionPane.messageFont", new Font("Snap ITC", Font.PLAIN, 20));
-                nameA = JOptionPane.showInputDialog(null,"ΔΩΣΕ ΤΟ ΟΝΟΜΑ ΣΟΥ: ");
+                nameA = JOptionPane.showInputDialog(null,"NAME: ");
                 if(nameA!=null) {
-                    JOptionPane.showMessageDialog(null, "ΠΑΙΚΤΗΣ1: " + nameA);
+                    JOptionPane.showMessageDialog(null, "PLAYER1: " + nameA);
                     playersFrame.setVisible(false);
                     done=true;
                 }
@@ -52,7 +57,11 @@ public class PlayersGUI {
                 } catch (InterruptedException interruptedException) {
                     interruptedException.printStackTrace();
                 }
-
+                try {
+                    write();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
                 mainScreen.setVisible(false);
             }
         });
@@ -62,16 +71,16 @@ public class PlayersGUI {
             public void actionPerformed(ActionEvent e) {
                 solo=false;
                 UIManager.put("OptionPane.messageFont", new Font("Snap ITC", Font.PLAIN, 20));
-                nameA = JOptionPane.showInputDialog("ΔΩΣΕ ΤΟ ΟΝΟΜΑ: ");
+                nameA = JOptionPane.showInputDialog("NAME: ");
                 if(nameA!=null)
-                    JOptionPane.showMessageDialog(null, "ΠΑΙΚΤΗΣ1: " + nameA);
+                    JOptionPane.showMessageDialog(null, "PLAYER1: " + nameA);
                 else if(nameA==null){
                     JOptionPane.showMessageDialog(null,"Error! ΔΕΝ ΕΔΩΣΕΣ ΟΝΟΜΑ!");
                 }
 
                 nameB = JOptionPane.showInputDialog("ΔΩΣΕ ΟΝΟΜΑ: ");
                 if(nameB!=null)
-                    JOptionPane.showMessageDialog(null, "ΠΑΙΚΤΗΣ1: " + nameB);
+                    JOptionPane.showMessageDialog(null, "PLAYER1: " + nameB);
                 else if(nameB==null)
                     JOptionPane.showMessageDialog(null,"Error! ΔΕΝ ΕΔΩΣΕΣ ΟΝΟΜΑ!");
 
@@ -84,10 +93,10 @@ public class PlayersGUI {
 
         playerPanel.setLayout(new GridLayout(2,1));
 
-        playersChoice1.setText("1 ΠΑΙΚΤΗΣ");
+        playersChoice1.setText("PLAYER 1");
         playersChoice1.setFont(new Font("Snap ITC",Font.PLAIN,45));
         playerPanel.add(playersChoice1);
-        playersChoice2.setText("2 ΠΑΙΚΤΗΣ");
+        playersChoice2.setText("PLAYER 2");
         playersChoice2.setFont(new Font("Snap ITC",Font.PLAIN,45));
         playerPanel.add(playersChoice2);
         playersFrame.setTitle("ΟΘΟΝΗ ΠΑΙΚΤΗ");
@@ -126,6 +135,30 @@ public class PlayersGUI {
 
     public void setNumOfRoundsB(){
         numberOfRoundsB++;
+    }
+
+    public void write() throws IOException {
+        try {
+            FileWriter out = new FileWriter("names.txt");
+            out.write(getNameA()+"\n");
+            if(getNameB()!=null)
+                out.write(getNameB());
+            out.close();
+        }
+        catch (IOException e) {
+            System.out.println("provlima");
+        }
+    }
+    private String[] read() throws FileNotFoundException {
+        String[] n=new String[2];
+        File myObj = new File("names.txt");
+        Scanner myReader = new Scanner(myObj);
+        int j=0;
+        while(myReader.hasNextLine()) {
+            n[j] = myReader.nextLine();
+            j++;
+        }
+        return n;
     }
 
 }
