@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 public class FastAnswerGUI {
     private JFrame frame;
+    JFrame fr;
     private JLabel question;
     private JLabel scoreLabel;
     private JButton ans1;
@@ -29,6 +30,7 @@ public class FastAnswerGUI {
 
     public FastAnswerGUI(){
         frame=new JFrame();
+         fr=new JFrame();
         question=new JLabel();
         scoreLabel=new JLabel();
         ans1=new JButton();
@@ -401,12 +403,15 @@ public class FastAnswerGUI {
             JLabel label = new JLabel("ΤΕΛΟΣ ΓΥΡΟΥ! ΠΑΙΚΤΗ 1 ΤΟ ΣΚΟΡ ΣΟΥ ΕΙΝΑΙ: " + scoreA + "ΠΑΙΚΤΗ 2 ΤΟ ΣΚΟΡ ΣΟΥ ΕΙΝΑΙ: "+ scoreB);
             TimeUnit.SECONDS.sleep(2);
             frame.setVisible(false);
+            fr.setVisible(false);
             JFrame frame1 = new JFrame("ΤΕΛΟΣ ΓΥΡΟΥ!");
             frame1.setSize(200, 200);
             frame1.setLocationRelativeTo(null);
 
             frame1.add(label, BorderLayout.CENTER);
+            label.setVisible(true);
             frame1.setVisible(true);
+            TimeUnit.SECONDS.sleep(2);
 
             //kalo to epomeno round me tixaiotita
             Random r=new Random();
@@ -437,15 +442,16 @@ public class FastAnswerGUI {
                         Betting b=new Betting();
                         b.showBetting(d,menuFrame,Ascore,Bscore,solo,rounds);
                     }
-                    if(ran==3)
+                    if(ran==0)
                     {
-                        //grigori
+                        RightAnswer ra=new RightAnswer();
+                        ra.showRightAnswer(d,menuFrame,Ascore,Bscore,solo,rounds);
                     }
 
 
 
 
-                    break;
+                    flag=true;
                 }
 
             }
@@ -489,9 +495,14 @@ public class FastAnswerGUI {
         fr.setResizable(true);
         fr.setBackground(Color.cyan);
         JLabel label=new JLabel("Round "+sum);
+        JLabel l=new JLabel("Fast Answer");
+
         label.setFont(new Font("Snap ITC",Font.PLAIN,45));
+        l.setFont(new Font("Snap ITC",Font.BOLD,20));
         label.setVisible(true);
+        l.setVisible(true);
         fr.add(label,BorderLayout.CENTER);
+        fr.add(l,BorderLayout.PAGE_END);
         fr.setVisible(true);
         game();
     }

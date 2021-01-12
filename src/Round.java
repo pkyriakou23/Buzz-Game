@@ -20,11 +20,13 @@ public class Round {
         rounds=new boolean[4];
         for(int i=0;i<4;i++)
             rounds[i]=false;
+
     }
 
     public void startRound(JFrame menuFrame,int scoreA,int scoreB,boolean solo) throws InterruptedException {
         Random r=new Random();
         int ran=r.nextInt(4);
+        ran=0;
         if(ran==0) {
             RightAnswer type1;
             type1 = new RightAnswer();
@@ -47,6 +49,7 @@ public class Round {
             FastAnswerGUI f=new FastAnswerGUI();
             f.fastAnswerQuestions(d,menuFrame,scoreA,scoreB,solo,rounds);
         }
+
 
 
     }

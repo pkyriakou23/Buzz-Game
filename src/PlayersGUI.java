@@ -89,8 +89,9 @@ public class PlayersGUI {
                     playersFrame.setVisible(false);
                     done=true;
                     try {
+                        write();
                         r.startRound(mainScreen,scoreA,scoreB,solo);
-                    } catch (InterruptedException interruptedException) {
+                    } catch (InterruptedException | IOException interruptedException) {
                         interruptedException.printStackTrace();
                     }
                 }

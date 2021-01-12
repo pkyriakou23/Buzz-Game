@@ -241,7 +241,7 @@ public class TimeGui {
 
         fr.setLocation(40,200);
         fr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        fr.setSize(300,300);
+        fr.setSize(400,400);
         fr.setResizable(false);
         fr.setBackground(Color.cyan);
         JLabel label=new JLabel("ROUND "+sum);
@@ -275,12 +275,16 @@ public class TimeGui {
                     label.setText("ΤΕΛΟΣ ΓΥΡΟΥ! ΤΟ ΣΚΟΡ ΣΟΥ ΕΙΝΑΙ " + (int) score);
                 frame.setVisible(false);
                 JFrame frame1 = new JFrame("ΤΕΛΟΣ ΓΥΡΟΥ");
-                frame1.setSize(200, 200);
+                frame1.setSize(400, 200);
                 frame1.setLocationRelativeTo(null);
 
                 frame1.add(label, BorderLayout.CENTER);
+                label.setVisible(true);
                 frame1.setVisible(true);
+
+                fr.setVisible(false);
                 frame.setVisible(false);
+                TimeUnit.SECONDS.sleep(2);
                 //kalo to epomeno round me tixaiotita
                 Random r=new Random();
                 int ran=0;

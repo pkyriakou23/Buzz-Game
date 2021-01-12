@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 public class ThermometerGUI {
 
     private JFrame frame;
+    JFrame roundFrame;
     private JLabel question;
     private JLabel scoreLabel;
     private JButton ans1;
@@ -33,6 +34,7 @@ public class ThermometerGUI {
 
     public ThermometerGUI(){
         frame=new JFrame();
+         roundFrame=new JFrame("ΤΕΛΕΥΤΑΙΟΣ ΓΥΡΟΣ");
         question=new JLabel();
         scoreLabel=new JLabel();
         ans1=new JButton();
@@ -236,6 +238,7 @@ public class ThermometerGUI {
                 if(player==1 && solo )
                     label.setText("ΤΕΛΟΣ ΓΥΡΟΥ! ΤΟ ΣΚΟΡ ΣΟΥ ΕΙΝΑΙ "+score);
                 frame.setVisible(false);
+                roundFrame.setVisible(false);
                 JFrame frame1 = new JFrame("ΤΕΛΟΣ ΓΥΡΟΥ");
                 frame1.setSize(200, 200);
                 frame1.setLocationRelativeTo(null);
@@ -286,13 +289,13 @@ public class ThermometerGUI {
 
 
     public void showRoundScreen(DisplayQuestions d, JFrame mainScreen, int scoreA, int scoreB, boolean solo, boolean[] rounds) throws InterruptedException {
-        JFrame roundFrame=new JFrame("ΤΕΛΕΥΤΑΙΟΣ ΓΥΡΟΣ");
-        roundFrame.setLocationRelativeTo(null);
+
+        roundFrame.setLocation(40,200);
         roundFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         roundFrame.setSize(400,400);
         roundFrame.setResizable(true);
         roundFrame.setBackground(Color.cyan);
-        JLabel roundLabel=new JLabel("Round 5 - ΘΕΡΜΟΜΕΤΡΟ");
+        JLabel roundLabel=new JLabel("Round 5 - THERMOMETER");
         roundLabel.setFont(new Font("Snap ITC",Font.PLAIN,45));
         roundLabel.setVisible(true);
         roundFrame.add(roundLabel,BorderLayout.CENTER);

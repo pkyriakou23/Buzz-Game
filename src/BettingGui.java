@@ -412,7 +412,7 @@ public class BettingGui {
 
         if(counter==5) {
             JLabel label = new JLabel("ΤΕΛΟΣ ΓΥΡΟΥ! ΤΟ ΣΚΟΡ ΣΟΥ ΕΙΝΑΙ "+score);
-            TimeUnit.SECONDS.sleep(2);
+
             if (player==0 )
             { counter = 0; player=1; }
             else {
@@ -421,12 +421,15 @@ public class BettingGui {
                 frame.setVisible(false);
                 bettingFrame.setVisible(false);
                 JFrame frame1 = new JFrame("ΤΕΛΟΣ ΓΥΡΟΥ!");
-                frame1.setSize(200, 200);
+                frame1.setSize(400, 200);
                 frame1.setLocationRelativeTo(null);
 
                 frame1.add(label, BorderLayout.CENTER);
+                label.setVisible(true);
                 frame1.setVisible(true);
+
                 fr.setVisible(false);
+                TimeUnit.SECONDS.sleep(2);
                 //kalo to epomeno round me tixaiotita
                 Random r=new Random();
                 int ran=0;
