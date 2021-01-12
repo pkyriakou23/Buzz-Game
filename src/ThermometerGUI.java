@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class ThermometerGUI {
@@ -309,5 +312,17 @@ public class ThermometerGUI {
         thermometerQuestions(d,mainScreen,scoreA,scoreB,solo,rounds);
         game();
 
+    }
+
+    private String[] read() throws FileNotFoundException {
+        String[] n=new String[2];
+        File myObj = new File("names.txt");
+        Scanner myReader = new Scanner(myObj);
+        int j=0;
+        while(myReader.hasNextLine()) {
+            n[j] = myReader.nextLine();
+            j++;
+        }
+        return n;
     }
 }

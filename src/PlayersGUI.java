@@ -75,18 +75,24 @@ public class PlayersGUI {
                 if(nameA!=null)
                     JOptionPane.showMessageDialog(null, "PLAYER1: " + nameA);
                 else if(nameA==null){
-                    JOptionPane.showMessageDialog(null,"Error! ΔΕΝ ΕΔΩΣΕΣ ΟΝΟΜΑ!");
+                    JOptionPane.showMessageDialog(null,"Error! NAME NOT DECLARED!");
                 }
 
-                nameB = JOptionPane.showInputDialog("ΔΩΣΕ ΟΝΟΜΑ: ");
+                nameB = JOptionPane.showInputDialog("NAME B: ");
                 if(nameB!=null)
                     JOptionPane.showMessageDialog(null, "PLAYER1: " + nameB);
                 else if(nameB==null)
-                    JOptionPane.showMessageDialog(null,"Error! ΔΕΝ ΕΔΩΣΕΣ ΟΝΟΜΑ!");
+                    JOptionPane.showMessageDialog(null,"Error! NAME NOT DECLARED!");
 
                 if(nameA!=null && nameB!=null) {
+
                     playersFrame.setVisible(false);
                     done=true;
+                    try {
+                        r.startRound(mainScreen,scoreA,scoreB,solo);
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }
                 }
             }
         });
@@ -126,7 +132,7 @@ public class PlayersGUI {
     public void playerInfo(){
         JLabel label=new JLabel(nameA);
         label.setFont(new Font("Snap ITC", Font.BOLD, 20));
-        JOptionPane.showConfirmDialog(null,label,"ΠΛΗΡΟΦΟΡΙΕΣ",JOptionPane.YES_OPTION);
+        JOptionPane.showConfirmDialog(null,label,"INFO",JOptionPane.YES_OPTION);
     }
 
     public int setNumOfRoundsA(){
@@ -149,16 +155,6 @@ public class PlayersGUI {
             System.out.println("provlima");
         }
     }
-    private String[] read() throws FileNotFoundException {
-        String[] n=new String[2];
-        File myObj = new File("names.txt");
-        Scanner myReader = new Scanner(myObj);
-        int j=0;
-        while(myReader.hasNextLine()) {
-            n[j] = myReader.nextLine();
-            j++;
-        }
-        return n;
-    }
+
 
 }

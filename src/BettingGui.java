@@ -209,7 +209,6 @@ public class BettingGui {
                 }
                 else
                 {
-                    System.out.println(answer+" "+ans1.getText());
                     scoreLabel.setText("ΧΑΝΕΙΣ -"+scoreGain);
                     if(solo || player==0)
                         Ascore=updateScore(Ascore,(scoreGain*(-1)));
@@ -254,7 +253,6 @@ public class BettingGui {
                 }
                 else
                 {
-                    System.out.println(answer+" "+ans2.getText());
                     scoreLabel.setText("ΧΑΝΕΙΣ -"+scoreGain);
                     if(solo || player==0)
                         Ascore=updateScore(Ascore,(scoreGain*(-1)));
@@ -298,7 +296,6 @@ public class BettingGui {
                 }
                 else
                 {
-                    System.out.println(answer+" "+ans3.getText());
                     scoreLabel.setText("ΧΑΝΕΙΣ -"+scoreGain);
                     if(solo || player==0)
                         Ascore=updateScore(Ascore,(scoreGain*(-1)));
@@ -341,7 +338,6 @@ public class BettingGui {
                 }
                 else
                 {
-                    System.out.println(answer+" "+ans4.getText());
                     scoreLabel.setText("ΧΑΝΕΙΣ -"+scoreGain);
                     if(solo || player==0)
                         Ascore=updateScore(Ascore,(scoreGain*(-1)));
@@ -413,7 +409,7 @@ public class BettingGui {
     }
     private void updateQuestion(DisplayQuestions d,JFrame menuFrame,int score,boolean solo,boolean[] rounds) throws InterruptedException {
         counter++;
-        System.out.println(counter);
+
         if(counter==5) {
             JLabel label = new JLabel("ΤΕΛΟΣ ΓΥΡΟΥ! ΤΟ ΣΚΟΡ ΣΟΥ ΕΙΝΑΙ "+score);
             TimeUnit.SECONDS.sleep(2);
@@ -441,6 +437,8 @@ public class BettingGui {
                 if(flag)
                 {
                     //THERMOMETRO
+                    ThermometerGUI t=new ThermometerGUI();
+                    t.showRoundScreen(d,menuFrame,Ascore,Bscore,solo,rounds);
                 }
 
 
@@ -463,12 +461,14 @@ public class BettingGui {
                         if(ran==3)
                         {
                             //grigori
+                            FastAnswerGUI f=new FastAnswerGUI();
+                            f.fastAnswerQuestions(d,menuFrame,Ascore,Bscore,solo,rounds);
                         }
 
 
 
 
-                        break;
+                        flag=true;
                     }
 
                 }

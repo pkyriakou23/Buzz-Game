@@ -281,7 +281,8 @@ public class RightAnswerGui {
                         flag=false;
                 if(flag)
                 {
-                    //THERMOMETRO
+                   ThermometerGUI t=new ThermometerGUI();
+                   t.showRoundScreen(d,menuFrame,Ascore,Bscore,solo,rounds);
                 }
 
 
@@ -303,6 +304,8 @@ public class RightAnswerGui {
                         }
                         if(ran==3)
                         {
+                            FastAnswerGUI f=new FastAnswerGUI();
+                            f.fastAnswerQuestions(d,menuFrame,Ascore,Bscore,solo,rounds);
                             //grigori
                         }
 

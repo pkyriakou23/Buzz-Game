@@ -291,6 +291,8 @@ public class TimeGui {
                 if(flag)
                 {
                     //THERMOMETRO
+                    ThermometerGUI t=new ThermometerGUI();
+                    t.showRoundScreen(d,menuFrame,Ascore,Bscore,solo,rounds);
                 }
 
 
@@ -312,6 +314,8 @@ public class TimeGui {
                         if(ran==3)
                         {
                             //grigori
+                            FastAnswerGUI f=new FastAnswerGUI();
+                            f.fastAnswerQuestions(d,menuFrame,Ascore,Bscore,solo,rounds);
                         }
 
 

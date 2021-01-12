@@ -48,7 +48,7 @@ public class FastAnswerGUI {
 
     public void fastAnswerQuestions(DisplayQuestions d,JFrame menuFrame,int scoreA,int scoreB,boolean solo,boolean[] rounds) throws InterruptedException
     {
-        rounds[0]=true;
+        rounds[3]=true;
         showRound(rounds);
 
         Ascore=scoreA;
@@ -493,6 +493,7 @@ public class FastAnswerGUI {
         label.setVisible(true);
         fr.add(label,BorderLayout.CENTER);
         fr.setVisible(true);
+        game();
     }
 
 }
