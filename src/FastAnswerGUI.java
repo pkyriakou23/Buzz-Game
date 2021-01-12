@@ -420,9 +420,13 @@ public class FastAnswerGUI {
             for (int i=0;i<4;i++)
                 if (!rounds[i])
                     flag=false;
+            if(solo)
+                flag=false;
             if(flag)
             {
                 //THERMOMETRO
+                ThermometerGUI t=new ThermometerGUI();
+                t.showRoundScreen(d,menuFrame,Ascore,Bscore,solo,rounds);
             }
 
 

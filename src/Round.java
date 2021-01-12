@@ -24,7 +24,12 @@ public class Round {
     }
 
     public void startRound(JFrame menuFrame,int scoreA,int scoreB,boolean solo) throws InterruptedException {
+
         Random r=new Random();
+        if(solo)
+        {
+            rounds[3]=true;
+        }
         int ran=r.nextInt(4);
         ran=0;
         if(ran==0) {
@@ -44,7 +49,7 @@ public class Round {
             type3=new Betting();
             type3.showBetting(d,menuFrame,scoreA,scoreB,solo,rounds);
         }
-        if(ran==3)
+        if(ran==3 && !rounds[3] )
         {
             FastAnswerGUI f=new FastAnswerGUI();
             f.fastAnswerQuestions(d,menuFrame,scoreA,scoreB,solo,rounds);

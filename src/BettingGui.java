@@ -8,7 +8,9 @@ import java.util.concurrent.TimeUnit;
 public class BettingGui {
     private JFrame frame;
     private JFrame fr;
+    private JFrame fScore;
     private JFrame bettingFrame;
+    private JLabel l;
     private JLabel category;
     private JLabel question;
     private JLabel scoreLabel;
@@ -33,6 +35,8 @@ public class BettingGui {
         frame=new JFrame();
         fr=new JFrame();
         bettingFrame=new JFrame();
+        fScore=new JFrame("Score");
+        l=new JLabel();
         category=new JLabel();
         question=new JLabel();
         scoreLabel=new JLabel();
@@ -150,7 +154,7 @@ public class BettingGui {
         rounds[2]=true;
         if (solo)
             player=1;
-       showRound(rounds);
+       showRound(rounds,solo);
 
 
         Ascore=scoreA;
@@ -372,14 +376,19 @@ public class BettingGui {
 
         bettingFr(d);
         bettingFrame.setVisible(true);
+        Ascore= updateScore(Ascore,0);
+
     }
 
-    private void showRound(boolean[] r)
+    private void showRound(boolean[] r,boolean solo)
     {
         int sum=0;
         for (int i=0;i<4;i++)
             if (r[i])
                 sum++;
+            if(solo)
+                sum--;
+
 
 
         fr.setTitle("ROUND");
@@ -416,18 +425,9 @@ public class BettingGui {
             if (player==0 )
             { counter = 0; player=1; }
             else {
-                if(player==1 && solo )
-                    label.setText("ΤΕΛΟΣ ΓΥΡΟΥ! ΤΟ ΣΚΟΡ ΣΟΥ ΕΙΝΑΙ "+score);
+
                 frame.setVisible(false);
                 bettingFrame.setVisible(false);
-                JFrame frame1 = new JFrame("ΤΕΛΟΣ ΓΥΡΟΥ!");
-                frame1.setSize(400, 200);
-                frame1.setLocationRelativeTo(null);
-
-                frame1.add(label, BorderLayout.CENTER);
-                label.setVisible(true);
-                frame1.setVisible(true);
-
                 fr.setVisible(false);
                 TimeUnit.SECONDS.sleep(2);
                 //kalo to epomeno round me tixaiotita
@@ -489,6 +489,11 @@ public class BettingGui {
     private int updateScore(int s,int score)
     {
         s+=score;
+        l.setText("Your score: "+s);
+        l.setVisible(true);
+        fScore.setSize(400,100);
+        fScore.setLocation(30,30);
+        fScore.setVisible(true);
         return s;
     }
     private void updateOptions(DisplayQuestions d)
