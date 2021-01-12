@@ -396,7 +396,7 @@ public class BettingGui {
         fr.setResizable(true);
         fr.setBackground(Color.cyan);
         JLabel label=new JLabel("ΓΥΡΟΣ "+sum);
-        label.setFont(new Font("Snap ITC",Font.PLAIN,45));
+        label.setFont(new Font("Century Gothic",Font.PLAIN,45));
         label.setVisible(true);
         fr.add(label,BorderLayout.CENTER);
         fr.setVisible(true);
@@ -437,7 +437,8 @@ public class BettingGui {
                         flag=false;
                 if(flag)
                 {
-                    //THERMOMETRO
+                    ThermometerGUI therm=new ThermometerGUI();
+                    therm.showRoundScreen(d,menuFrame,Ascore,Bscore,solo,rounds);
                 }
 
 
@@ -459,7 +460,8 @@ public class BettingGui {
                         }
                         if(ran==3)
                         {
-                            //grigori
+                            FastAnswerGUI fast=new FastAnswerGUI();
+                            fast.fastAnswerQuestions(d,menuFrame,Ascore,Bscore,solo,rounds);
                         }
 
 

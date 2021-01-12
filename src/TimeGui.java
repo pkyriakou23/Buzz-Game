@@ -251,7 +251,7 @@ public class TimeGui {
         fr.setResizable(false);
         fr.setBackground(Color.cyan);
         JLabel label=new JLabel("ΓΥΡΟΣ "+sum);
-        label.setFont(new Font("Snap ITC",Font.PLAIN,45));
+        label.setFont(new Font("Century Gothic",Font.PLAIN,45));
         label.setVisible(true);
         fr.add(label,BorderLayout.CENTER);
         fr.setVisible(true);
@@ -290,7 +290,8 @@ public class TimeGui {
                         flag=false;
                 if(flag)
                 {
-                    //THERMOMETRO
+                    ThermometerGUI therm=new ThermometerGUI();
+                    therm.showRoundScreen(d,menuFrame,Ascore,Bscore,solo,rounds);
                 }
 
 
@@ -311,7 +312,8 @@ public class TimeGui {
                         }
                         if(ran==3)
                         {
-                            //grigori
+                            FastAnswerGUI fast=new FastAnswerGUI();
+                            fast.fastAnswerQuestions(d,menuFrame,Ascore,Bscore,solo,rounds);
                         }
 
 

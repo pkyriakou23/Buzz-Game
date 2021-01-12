@@ -38,7 +38,7 @@ public class PlayersGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 solo=true;
-                UIManager.put("OptionPane.messageFont", new Font("Snap ITC", Font.PLAIN, 20));
+                UIManager.put("OptionPane.messageFont", new Font("Century Gothic", Font.PLAIN, 20));
                 nameA = JOptionPane.showInputDialog(null,"ΔΩΣΕ ΤΟ ΟΝΟΜΑ ΣΟΥ: ");
                 if(nameA!=null) {
                     JOptionPane.showMessageDialog(null, "ΠΑΙΚΤΗΣ1: " + nameA);
@@ -61,7 +61,7 @@ public class PlayersGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 solo=false;
-                UIManager.put("OptionPane.messageFont", new Font("Snap ITC", Font.PLAIN, 20));
+                UIManager.put("OptionPane.messageFont", new Font("Century Gothic", Font.PLAIN, 20));
                 nameA = JOptionPane.showInputDialog("ΔΩΣΕ ΤΟ ΟΝΟΜΑ: ");
                 if(nameA!=null)
                     JOptionPane.showMessageDialog(null, "ΠΑΙΚΤΗΣ1: " + nameA);
@@ -85,10 +85,10 @@ public class PlayersGUI {
         playerPanel.setLayout(new GridLayout(2,1));
 
         playersChoice1.setText("1 ΠΑΙΚΤΗΣ");
-        playersChoice1.setFont(new Font("Snap ITC",Font.PLAIN,45));
+        playersChoice1.setFont(new Font("Century Gothic",Font.PLAIN,45));
         playerPanel.add(playersChoice1);
         playersChoice2.setText("2 ΠΑΙΚΤΗΣ");
-        playersChoice2.setFont(new Font("Snap ITC",Font.PLAIN,45));
+        playersChoice2.setFont(new Font("Century Gothic",Font.PLAIN,45));
         playerPanel.add(playersChoice2);
         playersFrame.setTitle("ΟΘΟΝΗ ΠΑΙΚΤΗ");
         playersFrame.setSize(400,400);
@@ -116,7 +116,7 @@ public class PlayersGUI {
 
     public void playerInfo(){
         JLabel label=new JLabel(nameA);
-        label.setFont(new Font("Snap ITC", Font.BOLD, 20));
+        label.setFont(new Font("Century Gothic", Font.BOLD, 20));
         JOptionPane.showConfirmDialog(null,label,"ΠΛΗΡΟΦΟΡΙΕΣ",JOptionPane.YES_OPTION);
     }
 

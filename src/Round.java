@@ -26,6 +26,7 @@ public class Round {
         Random r=new Random();
         int ran=r.nextInt(4);
 
+        //ελεγχος για solo! Αν ειναι true δεν μπορει να παίξει γρηγορη απαντηση και θερμομετρο.
         if(ran==0) {
             RightAnswer type1;
             type1 = new RightAnswer();
@@ -42,6 +43,12 @@ public class Round {
             Betting type3;
             type3=new Betting();
             type3.showBetting(d,menuFrame,scoreA,scoreB,solo,rounds);
+        }
+        //grigori
+        if(ran==3){
+            FastAnswerGUI type4;
+            type4=new FastAnswerGUI();
+            type4.fastAnswerQuestions(d,menuFrame,scoreA,scoreB,solo,rounds);
         }
 
     }

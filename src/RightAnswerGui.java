@@ -52,6 +52,7 @@ public class RightAnswerGui {
             player=1;
         showRound(rounds);
         Bscore=scoreB;
+        Ascore=scoreA;
 
         frame.setTitle("ΕΡΩΣΤΗΣΕΙΣ");
         frame.setSize(700,500);
@@ -244,13 +245,13 @@ public class RightAnswerGui {
         fr.setResizable(true);
         fr.setBackground(Color.cyan);
         JLabel label=new JLabel("Round "+sum);
-        label.setFont(new Font("Snap ITC",Font.PLAIN,45));
+        label.setFont(new Font("Century Gothic",Font.PLAIN,45));
         label.setVisible(true);
         fr.add(label,BorderLayout.CENTER);
         fr.setVisible(true);
     }
     public void correctAnswer()  {
-        question.setText("Correct answer is "+answer);
+        question.setText("Η ΣΩΣΤΗ ΑΠΑΝΤΗΣΗ ΕΙΝΑΙ: "+answer);
         question.setFont(new Font("Verdana",Font.BOLD,22));
         question.setVisible(true);
     }
@@ -282,7 +283,8 @@ public class RightAnswerGui {
                         flag=false;
                 if(flag)
                 {
-                    //THERMOMETRO
+                    ThermometerGUI therm=new ThermometerGUI();
+                    therm.showRoundScreen(d,menuFrame,Ascore,Bscore,solo,rounds);
                 }
 
 
@@ -304,7 +306,8 @@ public class RightAnswerGui {
                         }
                         if(ran==3)
                         {
-                            //grigori
+                            FastAnswerGUI fast=new FastAnswerGUI();
+                            fast.fastAnswerQuestions(d,menuFrame,Ascore,Bscore,solo,rounds);
                         }
 
 
