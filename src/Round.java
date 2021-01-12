@@ -31,7 +31,7 @@ public class Round {
             rounds[3]=true;
         }
         int ran=r.nextInt(4);
-        ran=0;
+
         if(ran==0) {
             RightAnswer type1;
             type1 = new RightAnswer();
