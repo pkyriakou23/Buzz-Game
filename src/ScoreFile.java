@@ -98,10 +98,13 @@ public class ScoreFile {
         outW.close();
     }
 
-    public void addWin(boolean winOfPlayerA){
+    public void addWin(boolean winOfPlayerA,boolean winOfPlayerB){
         if(winOfPlayerA) {
             winA++;
-        }else {
+        }else if(winOfPlayerB) {
+            winB++;
+        }else if(winOfPlayerA && winOfPlayerB){
+            winA++;
             winB++;
         }
     }
@@ -165,4 +168,5 @@ public class ScoreFile {
             System.out.println("Problem reading file.");
         }
     }
+
 }

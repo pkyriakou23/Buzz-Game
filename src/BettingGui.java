@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -235,7 +236,7 @@ public class BettingGui {
                         updateQuestion(d,menuFrame,Ascore,solo,rounds);
                     else
                         updateQuestion(d,menuFrame,Bscore,solo,rounds);
-                } catch (InterruptedException interruptedException) {
+                } catch (InterruptedException | IOException interruptedException) {
                     interruptedException.printStackTrace();
                 }
                 updateOptions(d);
@@ -279,7 +280,7 @@ public class BettingGui {
                         updateQuestion(d,menuFrame,Ascore,solo,rounds);
                     else
                         updateQuestion(d,menuFrame,Bscore,solo,rounds);
-                } catch (InterruptedException interruptedException) {
+                } catch (InterruptedException | IOException interruptedException) {
                     interruptedException.printStackTrace();
                 }
                 updateOptions(d);
@@ -321,7 +322,7 @@ public class BettingGui {
                         updateQuestion(d,menuFrame,Ascore,solo,rounds);
                     else
                         updateQuestion(d,menuFrame,Bscore,solo,rounds);
-                } catch (InterruptedException interruptedException) {
+                } catch (InterruptedException | IOException interruptedException) {
                     interruptedException.printStackTrace();
                 }
                 updateOptions(d);
@@ -363,7 +364,7 @@ public class BettingGui {
                         updateQuestion(d,menuFrame,Ascore,solo,rounds);
                     else
                         updateQuestion(d,menuFrame,Bscore,solo,rounds);
-                } catch (InterruptedException interruptedException) {
+                } catch (InterruptedException | IOException interruptedException) {
                     interruptedException.printStackTrace();
                 }
                 updateOptions(d);
@@ -417,7 +418,7 @@ public class BettingGui {
         question.setVisible(true);
 
     }
-    private void updateQuestion(DisplayQuestions d,JFrame menuFrame,int score,boolean solo,boolean[] rounds) throws InterruptedException {
+    private void updateQuestion(DisplayQuestions d,JFrame menuFrame,int score,boolean solo,boolean[] rounds) throws InterruptedException, IOException {
         counter++;
 
         if(counter==5) {
@@ -445,6 +446,9 @@ public class BettingGui {
                     //THERMOMETRO
                     ThermometerGUI t=new ThermometerGUI();
                     t.showRoundScreen(d,menuFrame,Ascore,Bscore,solo,rounds);
+                }else if(flag){
+                    ScoreFile s=new ScoreFile();
+                    s.setHighScore(Ascore);
                 }
 
 

@@ -20,6 +20,8 @@ public class ThermometerGUI {
     private JPanel ansBox;
     private JPanel questBox;
 
+    private ScoreFile s;
+
 
     private int Ascore,Bscore;
 
@@ -49,6 +51,7 @@ public class ThermometerGUI {
         correctA=0;
         correctB=0;
 
+        s=new ScoreFile();
 
     }
 
@@ -259,6 +262,22 @@ public class ThermometerGUI {
                 frame1.add(label, BorderLayout.CENTER);
                 frame1.setVisible(true);
 
+                //grafo score sta arxeia
+                String[] n=new String[2];
+                try {
+                    n=read();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                s.findPlayers(n[0],n[1]);
+                if(Ascore>Bscore)
+                    s.addWin(true,false);
+                else if(Bscore>Ascore)
+                    s.addWin(false,true);
+                else
+                    s.addWin(true,true);
+                s.setWins();
+                s.writeWins();
                 //emfanizo to kentriko menu
                 menuFrame.setVisible(true);
             }

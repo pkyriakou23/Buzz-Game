@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -123,7 +124,7 @@ public class TimeGui {
                         updateQuestion(d,menuFrame,Ascore,solo,rounds);
                     else
                         updateQuestion(d,menuFrame,Bscore,solo,rounds);
-                } catch (InterruptedException interruptedException) {
+                } catch (InterruptedException | IOException interruptedException) {
                     interruptedException.printStackTrace();
                 }
                 updateOptions(d);
@@ -153,7 +154,7 @@ public class TimeGui {
                         updateQuestion(d,menuFrame,Ascore,solo,rounds);
                     else
                         updateQuestion(d,menuFrame,Bscore,solo,rounds);
-                } catch (InterruptedException interruptedException) {
+                } catch (InterruptedException | IOException interruptedException) {
                     interruptedException.printStackTrace();
                 }
                 updateOptions(d);
@@ -182,7 +183,7 @@ public class TimeGui {
                         updateQuestion(d,menuFrame,Ascore,solo,rounds);
                     else
                         updateQuestion(d,menuFrame,Bscore,solo,rounds);
-                } catch (InterruptedException interruptedException) {
+                } catch (InterruptedException | IOException interruptedException) {
                     interruptedException.printStackTrace();
                 }
                 updateOptions(d);
@@ -213,7 +214,7 @@ public class TimeGui {
                         updateQuestion(d,menuFrame,Ascore,solo,rounds);
                     else
                         updateQuestion(d,menuFrame,Bscore,solo,rounds);
-                } catch (InterruptedException interruptedException) {
+                } catch (InterruptedException | IOException interruptedException) {
                     interruptedException.printStackTrace();
                 }
                 updateOptions(d);
@@ -270,7 +271,7 @@ public class TimeGui {
         question.setFont(new Font("Verdana",Font.BOLD,22));
         question.setVisible(true);
     }
-    private void updateQuestion(DisplayQuestions d,JFrame menuFrame,int score,boolean solo,boolean[] rounds) throws InterruptedException {
+    private void updateQuestion(DisplayQuestions d,JFrame menuFrame,int score,boolean solo,boolean[] rounds) throws InterruptedException, IOException {
         counter++;
         if (counter == 5) {
             if (player == 0) {
@@ -293,6 +294,9 @@ public class TimeGui {
                 {
                     ThermometerGUI t=new ThermometerGUI();
                     t.showRoundScreen(d,menuFrame,Ascore,Bscore,solo,rounds);
+                }else if(flag){
+                    ScoreFile s=new ScoreFile();
+                    s.setHighScore(Ascore);
                 }
 
 

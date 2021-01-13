@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -121,7 +122,7 @@ public class RightAnswerGui {
                         updateQuestion(d,menuFrame,Ascore,solo,rounds);
                     else
                         updateQuestion(d,menuFrame,Bscore,solo,rounds);
-                } catch (InterruptedException interruptedException) {
+                } catch (InterruptedException | IOException interruptedException) {
                     interruptedException.printStackTrace();
                 }
                 updateOptions(d);
@@ -152,7 +153,7 @@ public class RightAnswerGui {
                         updateQuestion(d,menuFrame,Ascore,solo,rounds);
                     else
                         updateQuestion(d,menuFrame,Bscore,solo,rounds);
-                } catch (InterruptedException interruptedException) {
+                } catch (InterruptedException | IOException interruptedException) {
                     interruptedException.printStackTrace();
                 }
                 updateOptions(d);
@@ -183,7 +184,7 @@ public class RightAnswerGui {
                         updateQuestion(d,menuFrame,Ascore,solo,rounds);
                     else
                         updateQuestion(d,menuFrame,Bscore,solo,rounds);
-                } catch (InterruptedException interruptedException) {
+                } catch (InterruptedException | IOException interruptedException) {
                     interruptedException.printStackTrace();
                 }
                 updateOptions(d);
@@ -213,7 +214,7 @@ public class RightAnswerGui {
                         updateQuestion(d,menuFrame,Ascore,solo,rounds);
                     else
                         updateQuestion(d,menuFrame,Bscore,solo,rounds);
-                } catch (InterruptedException interruptedException) {
+                } catch (InterruptedException | IOException interruptedException) {
                     interruptedException.printStackTrace();
                 }
                 updateOptions(d);
@@ -262,7 +263,7 @@ public class RightAnswerGui {
         question.setFont(new Font("Verdana",Font.BOLD,22));
         question.setVisible(true);
     }
-    private void updateQuestion(DisplayQuestions d,JFrame menuFrame,int score,boolean solo,boolean[] rounds) throws InterruptedException {
+    private void updateQuestion(DisplayQuestions d,JFrame menuFrame,int score,boolean solo,boolean[] rounds) throws InterruptedException, IOException {
         counter++;
         if(counter==5) {
            fScore.setVisible(false);
@@ -287,6 +288,9 @@ public class RightAnswerGui {
                 {
                    ThermometerGUI t=new ThermometerGUI();
                    t.showRoundScreen(d,menuFrame,Ascore,Bscore,solo,rounds);
+                }else if(flag){
+                    ScoreFile s=new ScoreFile();
+                    s.setHighScore(Ascore);
                 }
                 while(!flag)
                 {
