@@ -5,11 +5,11 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Κλάση η οποία αναπαριστά την αρχή των γύρων του παιχνιδιού
+ */
 public class Round {
     private JFrame frame;
-
-
-
     private DisplayQuestions d;
     boolean[] rounds;
 
@@ -23,6 +23,16 @@ public class Round {
 
     }
 
+    /**
+     *
+     * @param menuFrame
+     * @param scoreA
+     * @param scoreB
+     * @param solo
+     * @throws InterruptedException
+     *
+     * Ξεκινάει το παιχνίδι διαλέγοντας στην τύχη τον πρώτο γύρο
+     */
     public void startRound(JFrame menuFrame,int scoreA,int scoreB,boolean solo) throws InterruptedException {
 
         menuFrame.setVisible(false);
@@ -65,9 +75,4 @@ public class Round {
 
     }
 
-    private void visible(JLabel l)
-    {
-        l.setVisible(true);
-        frame.setVisible(true);
-    }
 }

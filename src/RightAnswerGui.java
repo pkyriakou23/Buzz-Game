@@ -5,7 +5,12 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-
+/**
+ * Τύπος γύρου γραφικά: Σωστή Απάντηση
+ *
+ * Ο παίχτης εάν απαντήσει σωστά στην ερώτηση που του γίνεται κερδίζει 1000 πόντους
+ *
+ */
 public class RightAnswerGui {
     private JFrame frame;
     private JFrame fr;
@@ -51,8 +56,18 @@ public class RightAnswerGui {
     }
 
 
-
-
+    /**
+     *
+     * @param d
+     * @param menuFrame
+     * @param scoreA
+     * @param scoreB
+     * @param solo
+     * @param rounds
+     * @throws InterruptedException
+     *
+     * Φτίαχνει το frame με τις ερώτησεις και τις επιλόγες
+     */
     public void QuestionsWindow(DisplayQuestions d,JFrame menuFrame,int scoreA,int scoreB,boolean solo,boolean[] rounds) throws InterruptedException
     {
         rounds[0]=true;
@@ -223,13 +238,22 @@ public class RightAnswerGui {
 
     }
 
-
+    /**
+     * Ξεκινάει τον γύρο εμφανίζοντας το frame
+     * Εμφανίζει το frame για το με το σκορ
+     */
     public void game()  {
         frame.setVisible(true);
         updateScore( Ascore-1000);
     }
 
-
+    /**
+     *
+     * @param r
+     * @param solo
+     *Δημιουργάει το frame στο οποίο αναγράφετε ο γύρος και ο τύπος γύρου
+     *
+     */
     private void showRound(boolean[] r,boolean solo)
     {
         int sum=0;
@@ -258,11 +282,29 @@ public class RightAnswerGui {
         fr.add(l,BorderLayout.PAGE_END);
         fr.setVisible(true);
     }
+    /**
+     * Εμφανίζει την σωστή απάντηση
+     */
     public void correctAnswer()  {
         question.setText("Η ΣΩΣΤΗ ΑΠΑΝΤΗΣΗ ΕΙΝΑΙ "+answer1);
         question.setFont(new Font("Verdana",Font.BOLD,22));
         question.setVisible(true);
     }
+
+    /**
+     *
+     * @param d
+     * @param menuFrame
+     * @param score
+     * @param solo
+     * @param rounds
+     * @throws InterruptedException
+     * @throws IOException
+     *
+     * Εμφανίζει την καινούργια ερώτηση
+     * Ελέγχει αν είναι το τέλος του γύρου και προχωράει στον επόμενο
+     * Αν είναι το τέλος ξεκινάει απο την αρχή με το menu
+     */
     private void updateQuestion(DisplayQuestions d,JFrame menuFrame,int score,boolean solo,boolean[] rounds) throws InterruptedException, IOException {
         counter++;
         if(counter==5) {
@@ -326,6 +368,12 @@ public class RightAnswerGui {
         question.setVisible(true);
 
     }
+    /**
+     *
+     * @param s το ήδη υπάρχων σκορ
+     * @return
+     * ανανεώνει το σκορ, στο frame του και στην μεταβλητή
+     */
     private int updateScore(int s)
     {
         s+=1000;
@@ -337,6 +385,10 @@ public class RightAnswerGui {
 
         return s;
     }
+    /**
+     * @param d
+     * ανανεώνει τις επιλογές και την απάντηση
+     */
     private void updateOptions(DisplayQuestions d)
     {
         String[] opt=d.options();

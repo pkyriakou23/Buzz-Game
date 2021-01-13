@@ -5,6 +5,14 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+/**
+ * Τύπος γύρου γραφικά: Ποντάρισμα
+ *
+ * Ο παίχτης έχει την δυνατότητα να ποντάρει 250, 500, 750 ή 1000 πόντους.
+ * Εάν απαντήσει σωστά στην ερώτηση που του γίνεται κερδίζει τους πόντους που πόνταρε, σλλιώς τους χάνει.
+ *
+ */
+
 
 public class BettingGui {
     private JFrame frame;
@@ -55,7 +63,12 @@ public class BettingGui {
 
     }
 
-
+    /**
+     *@param d
+     * Δημιουργείται frame το οποίο ζητάει απο τον παίκτη να τοποθετήση το bet του
+     * Προβάλει επίσης και την κατηγορία
+     *
+     */
     private void bettingFr(DisplayQuestions d)
     {
         frame.setVisible(false);
@@ -151,6 +164,17 @@ public class BettingGui {
 
     }
 
+    /**
+     *
+     * @param d
+     * @param menuFrame
+     * @param scoreA
+     * @param scoreB
+     * @param solo
+     * @param rounds
+     * @throws InterruptedException
+     * Φτίαχνει το frame με τις ερώτησεις και τις επιλόγες
+     */
     public void QuestionsWindow(DisplayQuestions d,JFrame menuFrame,int scoreA,int scoreB,boolean solo,boolean[] rounds) throws InterruptedException
     {
         rounds[2]=true;
@@ -267,10 +291,7 @@ public class BettingGui {
 
                     scoreLabel.setFont(new Font("Verdana", Font.BOLD, 22));
                     scoreLabel.setVisible(true);
-
                 }
-
-
             }
 
             public void mouseReleased(MouseEvent e) {
@@ -373,7 +394,12 @@ public class BettingGui {
 
     }
 
-
+    /**
+     *
+     * @param d
+     * Ξεκινάει τον γύρο εμφανίζοντας το frame για το ποντάρισμα
+     * Εμφανίζει το frame για το με το σκορ
+     */
     public void game(DisplayQuestions d)  {
 
         bettingFr(d);
@@ -382,6 +408,12 @@ public class BettingGui {
 
     }
 
+    /**
+     *
+     * @param r
+     * @param solo
+     * Δημιουργάει το frame στο οποίο αναγράφετε ο γύρος και ο τύπος γύρου
+     */
     private void showRound(boolean[] r,boolean solo)
     {
         int sum=0;
@@ -390,8 +422,6 @@ public class BettingGui {
                 sum++;
             if(solo)
                 sum--;
-
-
 
         fr.setTitle("ROUND");
 
@@ -412,12 +442,30 @@ public class BettingGui {
         fr.setVisible(true);
     }
 
+    /**
+     * Εμφανίζει την σωστή απάντηση
+     */
     public void correctAnswer()  {
         question.setText("Η ΣΩΣΤΗ ΑΠΑΝΤΗΣΗ ΕΙΝΑΙ  "+answer1);
         question.setFont(new Font("Verdana",Font.BOLD,22));
         question.setVisible(true);
 
     }
+
+    /**
+     *
+     * @param d
+     * @param menuFrame
+     * @param score
+     * @param solo
+     * @param rounds
+     * @throws InterruptedException
+     * @throws IOException
+     *
+     * Εμφανίζει την καινούργια ερώτηση
+     * Ελέγχει αν είναι το τέλος του γύρου και προχωράει στον επόμενο
+     * Αν είναι το τέλος ξεκινάει απο την αρχή με το menu
+     */
     private void updateQuestion(DisplayQuestions d,JFrame menuFrame,int score,boolean solo,boolean[] rounds) throws InterruptedException, IOException {
         counter++;
 
@@ -433,7 +481,6 @@ public class BettingGui {
                 frame.setVisible(false);
                 bettingFrame.setVisible(false);
                 fr.setVisible(false);
-                TimeUnit.SECONDS.sleep(2);
                 //kalo to epomeno round me tixaiotita
                 Random r=new Random();
                 int ran=0;
@@ -495,6 +542,14 @@ public class BettingGui {
         }
 
     }
+
+    /**
+     *
+     * @param s το ήδη υπάρχων σκορ
+     * @param score το ποντάρισμα του
+     * @return
+     * ανανεώνει το σκορ, στο frame του και στην μεταβλητή
+     */
     private int updateScore(int s,int score)
     {
         s+=score;
@@ -505,6 +560,12 @@ public class BettingGui {
         fScore.setVisible(true);
         return s;
     }
+
+    /**
+     *
+     * @param d
+     * ανανεώνει τις επιλογές και την απάντηση
+     */
     private void updateOptions(DisplayQuestions d)
     {
         String[] opt=d.options();
@@ -512,7 +573,6 @@ public class BettingGui {
         ans2.setText("<HTML>"+opt[1]+"</HTML>");
         ans3.setText("<HTML>"+opt[2]+"</HTML>");
         ans4.setText("<HTML>"+opt[3]+"</HTML>");
-      //  ansBox.setVisible(true);
         for (int i = 0; i < 4; i++) {
             if (d.isCorrect(opt[i]))
                 answer1 = opt[i];

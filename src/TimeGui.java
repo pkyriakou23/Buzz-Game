@@ -7,7 +7,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-
+/**
+ * Τύπος γύρου γραφικά: Σωστή Απάντηση
+ * Ο παίχτης έχει 5 δευτερόλεπτα να απαντήσει σωστά στην ερώτηση που του γίνεται κερδίζει πόντους ανάλογα τον χρόνο που απάντησε
+ *
+ */
 public class TimeGui {
     private JFrame frame;
     private JFrame fr;
@@ -56,7 +60,18 @@ public class TimeGui {
 
     }
 
-
+    /**
+     *
+     * @param d
+     * @param menuFrame
+     * @param scoreA
+     * @param scoreB
+     * @param solo
+     * @param rounds
+     * @throws InterruptedException
+     *
+     * Φτίαχνει το frame με τις ερώτησεις και τις επιλόγες
+     */
     public void QuestionsWindow(DisplayQuestions d,JFrame menuFrame,int scoreA,int scoreB,boolean solo,boolean[] rounds) throws InterruptedException
     {
         rounds[1]=true;
@@ -223,7 +238,11 @@ public class TimeGui {
 
     }
 
-
+    /**
+     * Ξεκινάει τον γύρο εμφανίζοντας το frame
+     * Εμφανίζει το frame για το με το σκορ
+     * Ξεκινάει το χρονόμετρο
+     */
     public void game() throws InterruptedException {
 
 
@@ -234,7 +253,13 @@ public class TimeGui {
 
     }
 
-
+    /**
+     *
+     * @param r
+     * @param solo
+     *Δημιουργάει το frame στο οποίο αναγράφετε ο γύρος και ο τύπος γύρου
+     *
+     */
     private void showRound(boolean[] r,boolean solo)
     {
         int sum=0;
@@ -265,12 +290,29 @@ public class TimeGui {
         fr.setVisible(true);
 
     }
+    /**
+     * Εμφανίζει την σωστή απάντηση
+     */
     public void correctAnswer()  {
         stop=System.currentTimeMillis();
         question.setText("Η ΣΩΣΤΗ ΑΠΑΝΤΗΣΗ ΕΙΝΑΙ "+answer1);
         question.setFont(new Font("Verdana",Font.BOLD,22));
         question.setVisible(true);
     }
+    /**
+     *
+     * @param d
+     * @param menuFrame
+     * @param score
+     * @param solo
+     * @param rounds
+     * @throws InterruptedException
+     * @throws IOException
+     *
+     * Εμφανίζει την καινούργια ερώτηση
+     * Ελέγχει αν είναι το τέλος του γύρου και προχωράει στον επόμενο
+     * Αν είναι το τέλος ξεκινάει απο την αρχή με το menu
+     */
     private void updateQuestion(DisplayQuestions d,JFrame menuFrame,int score,boolean solo,boolean[] rounds) throws InterruptedException, IOException {
         counter++;
         if (counter == 5) {
@@ -342,13 +384,22 @@ public class TimeGui {
         }
     }
 
+    /**
+     * Υπενθυμίζει στο παίκτη ότι έχει 5 δευτερόλεπτα να απαντήσει
+     */
     public void updateScreenTime() {
 
        scoreLabel.setText("Έχεις 5 δευτερόλεπτα να απαντήσεις, 'Οσο γρηγορότερα τόσο πιο πολλούς πόντους θα πάρεις");
         scoreLabel.setFont(new Font("Arial", Font.ITALIC, 15));
     }
 
-
+    /**
+     *
+     * @param s
+     * @return
+     * Υπολογίζει τους πόντους π κέρδισε ο παίκτης
+     * ο χρόνος που απέμεινε από τα 5 δευτερόλεπτα *0,2
+     */
     private int updateScore(int s)
     {
         long diff=stop-start;
@@ -372,6 +423,10 @@ public class TimeGui {
         return s;
 
     }
+    /**
+     * @param d
+     * ανανεώνει τις επιλογές και την απάντηση
+     */
     private void updateOptions(DisplayQuestions d)
     {
         String[] opt=d.options();

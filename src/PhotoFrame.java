@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
 
+/**
+ * Κλάσει για εμφάνιση των φωτογραφιών όπου το απαιτεί ο τύπος της ερώτησης
+ */
 public class PhotoFrame {
     JFrame frame;
     JLabel label;
@@ -15,6 +18,12 @@ public class PhotoFrame {
         frame.setLocation(1300,100);
         frame.setFocusable(false);
     }
+
+    /**
+     *
+     * @param count
+     * Εμφανίζει την εικόνα
+     */
     public void showImage(int count)
     {
         String filename="image/"+count+".jpg";
@@ -24,6 +33,10 @@ public class PhotoFrame {
         label.setToolTipText(filename);
         frame.setVisible(true);
     }
+
+    /**
+     * Κρύβει την εικόνα
+     */
     public void hideImage()
     {
         frame.setVisible(false);
