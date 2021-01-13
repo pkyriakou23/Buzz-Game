@@ -64,6 +64,7 @@ public class FastAnswerGUI {
 
         frame.setTitle("ΕΡΩΤΗΣΕΙΣ");
         frame.setSize(700,500);
+        frame.setFocusable(true);
         frame.setLocationRelativeTo(null);
         frame.setResizable(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

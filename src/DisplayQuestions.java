@@ -54,7 +54,7 @@ public class DisplayQuestions {
 
 
         a.setYes(i);            // yes το πεδίο στον πίνακα με τις ερωτήσεις για να ξέρει το σύστημα οτι ρωτήθηκε
-        if(i>40&&i<60)
+        if(i>40&&i<80)
             photo.showImage(i-40);
         else
             photo.hideImage();

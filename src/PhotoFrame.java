@@ -11,8 +11,9 @@ public class PhotoFrame {
         frame=new JFrame("ΕΡΩΤΗΣΗ ΜΕ ΕΙΚΟΝΑ");
         label=new JLabel();
         frame.add(label, BorderLayout.CENTER);
-        frame.setSize(1300,1300);
-        frame.setLocation(1000,100);
+        frame.setSize(400,400);
+        frame.setLocation(1300,100);
+        frame.setFocusable(false);
     }
     public void showImage(int count)
     {
