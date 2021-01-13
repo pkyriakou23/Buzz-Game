@@ -37,6 +37,7 @@ public class BettingGui {
         bettingFrame=new JFrame();
         fScore=new JFrame("Score");
         l=new JLabel();
+        fScore.add(l,BorderLayout.CENTER);
         category=new JLabel();
         question=new JLabel();
         scoreLabel=new JLabel();
@@ -420,10 +421,12 @@ public class BettingGui {
         counter++;
 
         if(counter==5) {
-            JLabel label = new JLabel("ΤΕΛΟΣ ΓΥΡΟΥ! ΤΟ ΣΚΟΡ ΣΟΥ ΕΙΝΑΙ "+score);
 
             if (player==0 )
-            { counter = 0; player=1; }
+            { counter = 0; player=1;
+            bettingFrame.setVisible(true);
+
+            }
             else {
 
                 frame.setVisible(false);
@@ -437,7 +440,7 @@ public class BettingGui {
                 for (int i=0;i<4;i++)
                     if (!rounds[i])
                         flag=false;
-                if(flag)
+                if(flag&&!solo)
                 {
                     //THERMOMETRO
                     ThermometerGUI t=new ThermometerGUI();
@@ -475,6 +478,8 @@ public class BettingGui {
                     }
 
                 }
+                menuFrame.setVisible(true);
+                fScore.setVisible(false);
 
 
             }
@@ -504,10 +509,11 @@ public class BettingGui {
         ans3.setText("<HTML>"+opt[2]+"</HTML>");
         ans4.setText("<HTML>"+opt[3]+"</HTML>");
       //  ansBox.setVisible(true);
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++) {
             if (d.isCorrect(opt[i]))
                 answer1 = opt[i];
-            answer="<HTML>"+answer1+"</HTML>";
+        }
+        answer="<HTML>"+answer1+"</HTML>";
         scoreLabel.setVisible(false);
         category.setText(d.questionsCategory(d.getRandomI()));
         category.setVisible(true);

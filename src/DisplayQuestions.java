@@ -77,18 +77,6 @@ public class DisplayQuestions {
             temp[a]=opt[opRan.get(a)];
         return temp;
 
-
-
-//        int a=97;                   //ASCII
-//        String ch="";
-//        Iterator<Integer> z=opRan.iterator();
-//        while(z.hasNext()) {
-//            ch=Character.toString((char)a);                 //για εμφάνιση μπροστά a,b,c,d
-//            System.out.print(ch+'.'+opt[z.next()]+"   ");
-//            a++;
-//        }
-//        System.out.println();
-
     }
 
     /**

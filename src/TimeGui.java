@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
@@ -37,6 +38,7 @@ public class TimeGui {
         fr=new JFrame();
         fScore=new JFrame("Score");
         l=new JLabel();
+        fScore.add(l,BorderLayout.CENTER);
         question=new JLabel();
         scoreLabel=new JLabel();
         ans1=new JButton();
@@ -48,6 +50,7 @@ public class TimeGui {
 
         counter=0;
         player=0;
+        Ascore=0;
 
 
     }
@@ -76,9 +79,6 @@ public class TimeGui {
         questBox.add(scoreLabel);
 
         questBox.setLayout(new GridLayout(2,1));
-
-        String[] options = new String[4];
-
 
        updateOptions(d);
 
@@ -229,7 +229,7 @@ public class TimeGui {
         start=System.currentTimeMillis();
         frame.setVisible(true);
         updateScreenTime();
-        int num=updateScore(0);
+        int num=updateScore(-1);
 
     }
 
@@ -289,7 +289,7 @@ public class TimeGui {
                 for (int i=0;i<4;i++)
                     if (!rounds[i])
                         flag=false;
-                if(flag)
+                if(flag && !solo)
                 {
                     ThermometerGUI t=new ThermometerGUI();
                     t.showRoundScreen(d,menuFrame,Ascore,Bscore,solo,rounds);
@@ -324,6 +324,8 @@ public class TimeGui {
                     }
 
                 }
+                menuFrame.setVisible(true);
+                fScore.setVisible(false);
 
 
             }
@@ -347,14 +349,16 @@ public class TimeGui {
     {
         long diff=stop-start;
 
-        if(diff<5000)
+        if(diff<5000 && s!=-1)
         {
             s+=(int)((5000-diff)*0.2);
             scoreLabel.setText("ΤΟ ΣΚΟΡ ΣΟΥ +"+(int)((5000-diff)*0.2));
         }
         else
-            scoreLabel.setText("ΕΚΤΟΣ ΧΡΟΝΟΥ");
-
+            if(s!=-1)
+                scoreLabel.setText("ΕΚΤΟΣ ΧΡΟΝΟΥ");
+         if (s==-1)
+             s=Ascore;
         l.setText("Your score: "+s);
         l.setVisible(true);
         fScore.setSize(400,100);

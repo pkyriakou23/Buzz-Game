@@ -25,17 +25,23 @@ public class Round {
 
     public void startRound(JFrame menuFrame,int scoreA,int scoreB,boolean solo) throws InterruptedException {
 
+        menuFrame.setVisible(false);
         Random r=new Random();
         if(solo)
         {
             rounds[3]=true;
         }
-        int ran=r.nextInt(4);
+        int ran;
+      do {
+           ran = r.nextInt(4);
+      }
+      while (solo && ran==3);
 
         if(ran==0) {
             RightAnswer type1;
             type1 = new RightAnswer();
             type1.showRightAnswer(d, menuFrame, scoreA, scoreB, solo, rounds);
+
         }
         if(ran==1)
         {

@@ -45,6 +45,7 @@ public class RightAnswerGui {
 
         counter=0;
         player=0;
+        Ascore=0;
 
     }
 
@@ -58,6 +59,7 @@ public class RightAnswerGui {
             player=1;
         showRound(rounds,solo);
         Bscore=scoreB;
+        Ascore=scoreA;
 
         frame.setTitle("ΕΡΩΣΤΗΣΕΙΣ");
         frame.setSize(700,500);
@@ -222,9 +224,8 @@ public class RightAnswerGui {
 
 
     public void game()  {
-
         frame.setVisible(true);
-        updateScore(-1000);
+        updateScore( Ascore-1000);
     }
 
 
@@ -281,9 +282,8 @@ public class RightAnswerGui {
                     if (!rounds[i])
                         flag=false;
 
-                if(solo)
-                    flag=false;
-                if(flag)
+
+                if(flag&&!solo)
                 {
                    ThermometerGUI t=new ThermometerGUI();
                    t.showRoundScreen(d,menuFrame,Ascore,Bscore,solo,rounds);
@@ -312,6 +312,8 @@ public class RightAnswerGui {
                         flag=true;
                     }
                 }
+            menuFrame.setVisible(true);
+                fScore.setVisible(false);
             }
         }
 

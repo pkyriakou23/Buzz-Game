@@ -32,7 +32,6 @@ public class SelectQuestions {
      * Στο πρώτο μέρος ανάπτυξης της εργασίας θα χρησιμοποιηθούν είκοσι (20) ερωτήσεις, δηλαδή πέντε (5) από κάθε κατηγορία.
      */
     public SelectQuestions() {
-
         questions = new String[NUMBER_OF_QUESTIONS][2];
         category = new String[NUMBER_OF_QUESTIONS];
         answers = new String[NUMBER_OF_QUESTIONS];
@@ -68,8 +67,6 @@ public class SelectQuestions {
      */
     public String getAnswers(int numberOfQuestion)
     {
-
-
        return answers[numberOfQuestion];
     }
 
@@ -110,10 +107,8 @@ public class SelectQuestions {
     public void fillTable()
     {
         int i=0;
-        //fill questions
         try
         {
-
             File myObj = new File("questions.txt");
             Scanner myReader = new Scanner(myObj);
             int j=0;
