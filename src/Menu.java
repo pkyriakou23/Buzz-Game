@@ -24,6 +24,7 @@ public class Menu {
     private JButton exit;
     private PlayersGUI p;
     private JButton showScore;
+    private ScoreButtonGUI scoreBut;
 
     /**
      * Κατασκευαστής/ Constructor
@@ -42,6 +43,7 @@ public class Menu {
         exit=new JButton();
         p=new PlayersGUI();
         showScore=new JButton();
+        scoreBut=new ScoreButtonGUI();
     }
 
     /**
@@ -92,7 +94,7 @@ public class Menu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    buttons.showScore();
+                    scoreBut.showScore();
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }

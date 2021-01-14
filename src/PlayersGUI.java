@@ -112,10 +112,10 @@ public class PlayersGUI {
 
         playerPanel.setLayout(new GridLayout(2,1));
 
-        playersChoice1.setText("PLAYER 1");
+        playersChoice1.setText("1 PLAYER");
         playersChoice1.setFont(new Font("Snap ITC",Font.PLAIN,45));
         playerPanel.add(playersChoice1);
-        playersChoice2.setText("PLAYER 2");
+        playersChoice2.setText("2 PLAYERS");
         playersChoice2.setFont(new Font("Snap ITC",Font.PLAIN,45));
         playerPanel.add(playersChoice2);
         playersFrame.setTitle("ΟΘΟΝΗ ΠΑΙΚΤΗ");

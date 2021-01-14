@@ -14,8 +14,6 @@ import java.io.IOException;
 public class MenuButtons {
     private JFrame information;
     private JLabel desc;
-    private ScoreFile s;
-    private JFrame score;
 
     /**
      * Κατασκευαστής/ Constructor
@@ -26,8 +24,6 @@ public class MenuButtons {
         information=new JFrame();
         desc=new JLabel();
         information.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        s=new ScoreFile();
-        score=new JFrame();
     }
 
     /**
@@ -67,52 +63,4 @@ public class MenuButtons {
         }
     }
 
-    /**
-     * Κουμπί παρουσιάσης στατιστικών σκορ παιχνιδιού.
-     * Εμφανίζει στην οθόνη με την βοήθεια της κλάσης ScoreFile
-     * το υψηλότερο σκορ στο παιχνίδι ενός παίκτη καθώς και τις νίκες κάθε
-     * παίκτη στο ανταγωνιστικό παιχνίδι δύο παικτών.
-     * @throws IOException
-     */
-    public void showScore() throws IOException {
-        score.setTitle("Score");
-        score.setLocationRelativeTo(null);
-        score.setSize(800,600);
-        score.setResizable(true);
-        score.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        JPanel scorePanel=new JPanel();
-        scorePanel.setLayout(new GridLayout(3,1));
-
-        JLabel titleHigh=new JLabel("HIGH SCORE");
-        titleHigh.setFont(new Font("Snap ITC", Font.BOLD, 30));
-        titleHigh.setAlignmentX(Component.CENTER_ALIGNMENT);
-        titleHigh.setAlignmentY(Component.CENTER_ALIGNMENT);
-        JLabel highScore=new JLabel(String.valueOf(s.getHighScore()));
-        highScore.setFont(new Font("Snap ITC", Font.BOLD, 30));
-        highScore.setAlignmentX(Component.CENTER_ALIGNMENT);
-        highScore.setAlignmentY(Component.CENTER_ALIGNMENT);
-
-        scorePanel.add(titleHigh,BorderLayout.CENTER);
-        scorePanel.add(highScore,BorderLayout.CENTER);
-
-        JPanel winsPanel=new JPanel();
-        winsPanel.setLayout(new GridLayout(3,10));
-        JLabel titleWins=new JLabel("WINS TABLE");
-        titleWins.setFont(new Font("Snap ITC", Font.BOLD, 30));
-        JLabel names=new JLabel(s.getNames());
-        names.setFont(new Font("Candara Light", Font.BOLD, 30));
-        JLabel wins=new JLabel(s.getWins());
-        wins.setFont(new Font("Candara Light", Font.BOLD, 30));
-        winsPanel.add(titleWins);
-        winsPanel.add(names);
-        winsPanel.add(wins);
-
-        JPanel total=new JPanel();
-        total.add(scorePanel);
-        total.add(winsPanel);
-        score.add(total,BorderLayout.CENTER);
-
-        score.setVisible(true);
-    }
 }

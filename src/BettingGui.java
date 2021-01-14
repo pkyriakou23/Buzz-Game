@@ -496,9 +496,13 @@ public class BettingGui {
                 {
                     ThermometerGUI t=new ThermometerGUI();
                     t.showRoundScreen(d,menuFrame,Ascore,Bscore,solo,rounds);
-                }else if(flag){
+                }
+                if(flag){
                     ScoreFile s=new ScoreFile();
                     s.setHighScore(Ascore);
+                    ScoreButtonGUI sb =new ScoreButtonGUI();
+                    sb.showScore();
+                    menuFrame.setVisible(true);
                 }
                 while(!flag)
                 {
@@ -525,7 +529,6 @@ public class BettingGui {
                         flag=true;
                     }
                 }
-                menuFrame.setVisible(true);
                 fScore.setVisible(false);
             }
         }
