@@ -6,13 +6,17 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Κλάση η οποία αναπαριστά την αρχή των γύρων του παιχνιδιού
+ * Κλάση η οποία αναπαριστά την αρχή των γύρων του παιχνιδιού (1ος γύρος).
  */
 public class Round {
     private JFrame frame;
     private DisplayQuestions d;
     boolean[] rounds;
 
+    /**
+     * Κατασκευαστής/ Constructor
+     * Αρχικοποιεί τις απαραίτητες μεταβλητές για την εμφάνιση του γύρου.
+     */
     public Round(){
         frame=new JFrame();
 
@@ -25,13 +29,13 @@ public class Round {
 
     /**
      *
-     * @param menuFrame
-     * @param scoreA
-     * @param scoreB
-     * @param solo
+     * @param menuFrame Το αρχικό μενού, το οποίο μπορεί να χρειαστεί να εμφανιστεί μετά το τέλος του γύρου
+     * @param scoreA Το σκορ του 1ου παίκτη
+     * @param scoreB Το σκορ του 2ου παίκτη
+     * @param solo Boolean μεταβλητή που καθορίζει αν το παιχνίδι παίζεται από έναν ή δύο παίκτες
      * @throws InterruptedException
      *
-     * Ξεκινάει το παιχνίδι διαλέγοντας στην τύχη τον πρώτο γύρο
+     * Ξεκινάει το παιχνίδι διαλέγοντας στην τύχη τον πρώτο γύρο.
      */
     public void startRound(JFrame menuFrame,int scoreA,int scoreB,boolean solo) throws InterruptedException {
 

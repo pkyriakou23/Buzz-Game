@@ -8,8 +8,8 @@ import java.net.URL;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 /**
- * Τύπος γύρου γραφικά: Σωστή Απάντηση
- * Ο παίχτης έχει 5 δευτερόλεπτα να απαντήσει σωστά στην ερώτηση που του γίνεται κερδίζει πόντους ανάλογα τον χρόνο που απάντησε
+ * Τύπος γύρου γραφικά: Χρονόμετρο
+ * Ο παίχτης έχει 5 δευτερόλεπτα να απαντήσει σωστά στην ερώτηση που του γίνεται και κερδίζει πόντους ανάλογα με τον χρόνο που απάντησε.
  *
  */
 public class TimeGui {
@@ -25,19 +25,18 @@ public class TimeGui {
     private JButton ans4;
     private JPanel ansBox;
     private JPanel questBox;
-
-
     private int Ascore,Bscore;
-
     private int counter;
     private int player;
-
-
     long start;
     long stop;
     String answer;
     String answer1;
 
+    /**
+     * Κατασκευαστής/ Constructor
+     * Αρχικοποιεί τις απαραίτητες μεταβλητές για την ομαλή διεξαγωγή του γύρου χρονόμετρο.
+     */
     public TimeGui(){
         frame=new JFrame();
         fr=new JFrame();
@@ -56,21 +55,19 @@ public class TimeGui {
         counter=0;
         player=0;
         Ascore=0;
-
-
     }
 
     /**
      *
-     * @param d
-     * @param menuFrame
-     * @param scoreA
-     * @param scoreB
-     * @param solo
-     * @param rounds
+     * @param d Η βοηθητική κλάση DisplayQuestions για την εμφάνιση των ερωτήσεων
+     * @param menuFrame Το αρχικό μενού, το οποίο μπορεί να χρειαστεί να εμφανιστεί μετά το τέλος του γύρου
+     * @param scoreA Το σκορ του 1ου παίκτη
+     * @param scoreB Το σκορ του 2ου παίκτη
+     * @param solo Boolean μεταβλητή που καθορίζει αν το παιχνίδι παίζεται από έναν ή δύο παίκτες
+     * @param rounds Βοηθητική μεταβλητή για την τυχαία σειρά εμφάνισης των διαφόρων τύπων γύρων του παιχνιδιού
      * @throws InterruptedException
      *
-     * Φτίαχνει το frame με τις ερώτησεις και τις επιλόγες
+     * Φτίαχνει το frame με τις ερώτησεις και τις επιλόγες που θα παρουσιαστούν στον γύρο Χρονόμετρο.
      */
     public void QuestionsWindow(DisplayQuestions d,JFrame menuFrame,int scoreA,int scoreB,boolean solo,boolean[] rounds) throws InterruptedException
     {
@@ -99,10 +96,10 @@ public class TimeGui {
        updateOptions(d);
 
         ans1.setSize(100, 100);
-        ans1.setFont(new Font("Verdana", Font.BOLD, 22));
-        ans2.setFont(new Font("Verdana", Font.BOLD, 22));
-        ans3.setFont(new Font("Verdana", Font.BOLD, 22));
-        ans4.setFont(new Font("Verdana", Font.BOLD, 22));
+        ans1.setFont(new Font("Candara Light", Font.BOLD, 22));
+        ans2.setFont(new Font("Candara Light", Font.BOLD, 22));
+        ans3.setFont(new Font("Candara Light", Font.BOLD, 22));
+        ans4.setFont(new Font("Candara Light", Font.BOLD, 22));
 
         ansBox.setLayout(new GridLayout(2, 2));
 
@@ -126,7 +123,7 @@ public class TimeGui {
                     else
                         Bscore=updateScore(Bscore);
 
-                    scoreLabel.setFont(new Font("Verdana", Font.BOLD, 22));
+                    scoreLabel.setFont(new Font("Candara Light", Font.BOLD, 22));
                     scoreLabel.setVisible(true);
                 }
 
@@ -156,7 +153,7 @@ public class TimeGui {
                     else
                         Bscore=updateScore(Bscore);
 
-                    scoreLabel.setFont(new Font("Verdana", Font.BOLD, 22));
+                    scoreLabel.setFont(new Font("Candara Light", Font.BOLD, 22));
                     scoreLabel.setVisible(true);
                 }
 
@@ -185,7 +182,7 @@ public class TimeGui {
                         Ascore=updateScore(Ascore);
                     else
                         Bscore=updateScore(Bscore);
-                    scoreLabel.setFont(new Font("Verdana", Font.BOLD, 22));
+                    scoreLabel.setFont(new Font("Candara Light", Font.BOLD, 22));
                     scoreLabel.setVisible(true);
                 }
 
@@ -215,7 +212,7 @@ public class TimeGui {
                     else
                         Bscore=updateScore(Bscore);
 
-                    scoreLabel.setFont(new Font("Verdana", Font.BOLD, 22));
+                    scoreLabel.setFont(new Font("Candara Light", Font.BOLD, 22));
                     scoreLabel.setVisible(true);
                 }
 
@@ -239,9 +236,9 @@ public class TimeGui {
     }
 
     /**
-     * Ξεκινάει τον γύρο εμφανίζοντας το frame
-     * Εμφανίζει το frame για το με το σκορ
-     * Ξεκινάει το χρονόμετρο
+     * Ξεκινάει τον γύρο εμφανίζοντας το frame.
+     * Εμφανίζει το frame στο οποίο φαίνεται το σκορ του παίκτη κατά την διάρκεια του γύρου.
+     * Ξεκινάει το χρονόμετρο.
      */
     public void game() throws InterruptedException {
 
@@ -255,9 +252,10 @@ public class TimeGui {
 
     /**
      *
-     * @param r
-     * @param solo
-     *Δημιουργάει το frame στο οποίο αναγράφετε ο γύρος και ο τύπος γύρου
+     * @param r Βοηθητική μεταβλητή για την τυχαία σειρά εμφάνισης των διαφόρων τύπων γύρων του παιχνιδιού
+     * @param solo Boolean μεταβλητή που καθορίζει αν το παιχνίδι παίζεται από έναν ή δύο παίκτες
+     *
+     *Δημιουργεί το frame στο οποίο αναγράφετε ο αριθμός του γύρου και ο τύπος του.
      *
      */
     private void showRound(boolean[] r,boolean solo)
@@ -291,27 +289,27 @@ public class TimeGui {
 
     }
     /**
-     * Εμφανίζει την σωστή απάντηση
+     * Εμφανίζει την σωστή απάντηση της τρέχουσας ερώτησης.
      */
     public void correctAnswer()  {
         stop=System.currentTimeMillis();
         question.setText("Η ΣΩΣΤΗ ΑΠΑΝΤΗΣΗ ΕΙΝΑΙ "+answer1);
-        question.setFont(new Font("Verdana",Font.BOLD,22));
+        question.setFont(new Font("Candara Light",Font.BOLD,22));
         question.setVisible(true);
     }
     /**
      *
-     * @param d
-     * @param menuFrame
-     * @param score
-     * @param solo
-     * @param rounds
+     * @param d Η βοηθητική κλάση DisplayQuestions για την εμφάνιση των ερωτήσεων
+     * @param menuFrame Το αρχικό μενού, το οποίο μπορεί να χρειαστεί να εμφανιστεί μετά το τέλος του γύρου
+     * @param score Το σκορ του παίκτη που διαγωνίζεται
+     * @param solo Boolean μεταβλητή που καθορίζει αν το παιχνίδι παίζεται από έναν ή δύο παίκτες
+     * @param rounds Βοηθητική μεταβλητή για την τυχαία σειρά εμφάνισης των διαφόρων τύπων γύρων του παιχνιδιού
      * @throws InterruptedException
      * @throws IOException
      *
      * Εμφανίζει την καινούργια ερώτηση
-     * Ελέγχει αν είναι το τέλος του γύρου και προχωράει στον επόμενο
-     * Αν είναι το τέλος ξεκινάει απο την αρχή με το menu
+     * Ελέγχει αν είναι το τέλος του γύρου και εαν αυτό ισχύει προχωράει στον επόμενο, διαφορετικά ανανεώνει την ερώτηση.
+     * Αν είναι το τέλος του γύρου ξεκινάει απο την αρχή με το κεντρικό menu.
      */
     private void updateQuestion(DisplayQuestions d,JFrame menuFrame,int score,boolean solo,boolean[] rounds) throws InterruptedException, IOException {
         counter++;
@@ -325,7 +323,7 @@ public class TimeGui {
                 fr.setVisible(false);
                 frame.setVisible(false);
 
-                //kalo to epomeno round me tixaiotita
+                //Κλήση επόμενου γύρου με τυχαιότητα
                 Random r=new Random();
                 int ran=0;
                 boolean flag=true;
@@ -340,8 +338,6 @@ public class TimeGui {
                     ScoreFile s=new ScoreFile();
                     s.setHighScore(Ascore);
                 }
-
-
                 while(!flag)
                 {
                     ran=r.nextInt(4);
@@ -359,27 +355,19 @@ public class TimeGui {
                         }
                         if(ran==3)
                         {
-                            //grigori
                             FastAnswerGUI f=new FastAnswerGUI();
                             f.fastAnswerQuestions(d,menuFrame,Ascore,Bscore,solo,rounds);
                         }
-
-
-
                         flag=true;
                     }
-
                 }
                 menuFrame.setVisible(true);
                 fScore.setVisible(false);
-
-
             }
         } else {
             TimeUnit.SECONDS.sleep(2);
             question.setText("<HTML>" + d.questions(0) + "</HTML>");
             updateScreenTime();
-          //  question.setVisible(true);
             start = System.currentTimeMillis();
         }
     }
@@ -390,15 +378,15 @@ public class TimeGui {
     public void updateScreenTime() {
 
        scoreLabel.setText("Έχεις 5 δευτερόλεπτα να απαντήσεις, 'Οσο γρηγορότερα τόσο πιο πολλούς πόντους θα πάρεις");
-        scoreLabel.setFont(new Font("Arial", Font.ITALIC, 15));
+        scoreLabel.setFont(new Font("Candara Light", Font.ITALIC, 15));
     }
 
     /**
      *
-     * @param s
-     * @return
-     * Υπολογίζει τους πόντους π κέρδισε ο παίκτης
-     * ο χρόνος που απέμεινε από τα 5 δευτερόλεπτα *0,2
+     * @param s το τρέχων σκορ του παίκτη
+     * @return s
+     * Υπολογίζει τους πόντους που κέρδισε ο παίκτης χρησιμοποιώντας την εξής πράξη:
+     * ο χρόνος που απέμεινε από τα 5 δευτερόλεπτα *0,2.
      */
     private int updateScore(int s)
     {
@@ -424,8 +412,8 @@ public class TimeGui {
 
     }
     /**
-     * @param d
-     * ανανεώνει τις επιλογές και την απάντηση
+     * @param d Η βοηθητική κλάση DisplayQuestions για την εμφάνιση των ερωτήσεων
+     * Ανανεώνει τις επιλογές και την απάντηση.
      */
     private void updateOptions(DisplayQuestions d)
     {
@@ -434,7 +422,6 @@ public class TimeGui {
         ans2.setText("<HTML>"+opt[1]+"</HTML>");
         ans3.setText("<HTML>"+opt[2]+"</HTML>");
         ans4.setText("<HTML>"+opt[3]+"</HTML>");
-       // ansBox.setVisible(true);
         for (int i = 0; i < 4; i++)
             if (d.isCorrect(opt[i]))
                 answer1 = opt[i];

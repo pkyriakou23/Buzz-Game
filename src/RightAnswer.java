@@ -59,14 +59,25 @@ import javax.swing.*;
  */
 public class RightAnswer {
     private RightAnswerGui questions;
-   // private JFrame frame;
 
+    /**
+     * Κατασκευαστής/ Constructor
+     * Αρχικοποιεί τις απαραίτητες μεταβλητές.
+     */
     public RightAnswer(){
         questions=new RightAnswerGui();
-        //frame=new JFrame();
-       // frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
+    /**
+     * Συνάρτηση που εμφανίζει τον τύπο γύρου "Σωστή Απάντηση"
+     * @param d Η βοηθητική κλάση DisplayQuestions για την εμφάνιση των ερωτήσεων
+     * @param menuFrame Το αρχικό μενού, το οποίο μπορεί να χρειαστεί να εμφανιστεί μετά το τέλος του γύρου
+     * @param scoreA Το σκορ του 1ου παίκτη
+     * @param scoreB Το σκορ του 2ου παίκτη
+     * @param solo Boolean μεταβλητή που καθορίζει αν το παιχνίδι παίζεται από έναν ή δύο παίκτες
+     * @param rounds Βοηθητική μεταβλητή για την τυχαία σειρά εμφάνισης των διαφόρων τύπων γύρων του παιχνιδιού
+     * @throws InterruptedException
+     */
     public void showRightAnswer(DisplayQuestions d,JFrame menuFrame,int scoreA, int scoreB,boolean solo,boolean[] rounds) throws InterruptedException {
         questions.QuestionsWindow(d,menuFrame,scoreA,scoreB,solo,rounds);
         questions.game();

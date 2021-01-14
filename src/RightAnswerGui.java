@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Τύπος γύρου γραφικά: Σωστή Απάντηση
  *
- * Ο παίχτης εάν απαντήσει σωστά στην ερώτηση που του γίνεται κερδίζει 1000 πόντους
+ * Ο παίχτης εάν απαντήσει σωστά στην ερώτηση που του γίνεται κερδίζει 1000 πόντους.
  *
  */
 public class RightAnswerGui {
@@ -24,16 +24,16 @@ public class RightAnswerGui {
     private JButton ans4;
     private JPanel ansBox;
     private JPanel questBox;
-
-
     private int Ascore,Bscore;
-
     private int counter;
     private int player;
-
     String answer;
     String answer1;
 
+    /**
+     * Κατασκευαστής/ Constructor
+     * Αρχικοποιεί τις απαραίτητες μεταβλητές για την ομαλή διεξαγωγή του γύρου "Σωστή Απάντηση".
+     */
     public RightAnswerGui(){
         frame=new JFrame();
         fr=new JFrame();
@@ -58,18 +58,19 @@ public class RightAnswerGui {
 
     /**
      *
-     * @param d
-     * @param menuFrame
-     * @param scoreA
-     * @param scoreB
-     * @param solo
-     * @param rounds
+     * @param d Η βοηθητική κλάση DisplayQuestions για την εμφάνιση των ερωτήσεων
+     * @param menuFrame Το αρχικό μενού, το οποίο μπορεί να χρειαστεί να εμφανιστεί μετά το τέλος του γύρου
+     * @param scoreA Το σκορ του 1ου παίκτη
+     * @param scoreB Το σκορ του 2ου παίκτη
+     * @param solo Boolean μεταβλητή που καθορίζει αν το παιχνίδι παίζεται από έναν ή δύο παίκτες
+     * @param rounds Βοηθητική μεταβλητή για την τυχαία σειρά εμφάνισης των διαφόρων τύπων γύρων του παιχνιδιού
      * @throws InterruptedException
      *
-     * Φτίαχνει το frame με τις ερώτησεις και τις επιλόγες
+     * Φτιάχνει το frame με τις ερώτησεις και τις αντίστοιχες επιλόγες.
      */
     public void QuestionsWindow(DisplayQuestions d,JFrame menuFrame,int scoreA,int scoreB,boolean solo,boolean[] rounds) throws InterruptedException
     {
+        //Δήλωση μοναδικότητας εμφάνισης του γύρου "Σωστή Απάντηση"
         rounds[0]=true;
         if (solo)
             player=1;
@@ -77,32 +78,33 @@ public class RightAnswerGui {
         Bscore=scoreB;
         Ascore=scoreA;
 
+        //Σχεδιασμός παραθύρου εμφάνισης ερωτήσεων
         frame.setTitle("ΕΡΩΣΤΗΣΕΙΣ");
         frame.setSize(700,500);
         frame.setLocationRelativeTo(null);
         frame.setResizable(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        //Επιλογή ερώτησης μέσω της βοηθητικής κλάσης DisplayQuestions
         question.setText(d.questions(0));
         question.setAlignmentX(FlowLayout.LEFT);
         scoreLabel.setAlignmentX(FlowLayout.LEFT);
         questBox.add(question);
         questBox.add(scoreLabel);
-
         questBox.setLayout(new GridLayout(2,1));
 
+        //Επιλογή αντίστοιχων πιθανών απαντήσεων
         String[] options = new String[4];
 
         updateOptions(d);
 
         ans1.setSize(100, 100);
-        ans1.setFont(new Font("Verdana", Font.BOLD, 22));
-        ans2.setFont(new Font("Verdana", Font.BOLD, 22));
-        ans3.setFont(new Font("Verdana", Font.BOLD, 22));
-        ans4.setFont(new Font("Verdana", Font.BOLD, 22));
+        ans1.setFont(new Font("Candara Light", Font.BOLD, 22));
+        ans2.setFont(new Font("Candara Light", Font.BOLD, 22));
+        ans3.setFont(new Font("Candara Light", Font.BOLD, 22));
+        ans4.setFont(new Font("Candara Light", Font.BOLD, 22));
 
         ansBox.setLayout(new GridLayout(2, 2));
-        //   ansBox.setFont(new Font("Arial", Font.BOLD, 20));
         ansBox.add(ans1);
         ansBox.add(ans2);
         ansBox.add(ans3);
@@ -124,7 +126,7 @@ public class RightAnswerGui {
                     else
                         Bscore=updateScore(Bscore);
 
-                    scoreLabel.setFont(new Font("Verdana", Font.BOLD, 22));
+                    scoreLabel.setFont(new Font("Candara Light", Font.BOLD, 22));
                     scoreLabel.setVisible(true);
                 }
 
@@ -155,7 +157,7 @@ public class RightAnswerGui {
                     else
                         Bscore=updateScore(Bscore);
 
-                    scoreLabel.setFont(new Font("Verdana", Font.BOLD, 22));
+                    scoreLabel.setFont(new Font("Candara Light", Font.BOLD, 22));
                     scoreLabel.setVisible(true);
                 }
 
@@ -185,7 +187,7 @@ public class RightAnswerGui {
                         Ascore=updateScore(Ascore);
                     else
                         Bscore=updateScore(Bscore);
-                    scoreLabel.setFont(new Font("Verdana", Font.BOLD, 22));
+                    scoreLabel.setFont(new Font("Candara Light", Font.BOLD, 22));
                     scoreLabel.setVisible(true);
                 }
 
@@ -216,7 +218,7 @@ public class RightAnswerGui {
                     else
                         Bscore=updateScore(Bscore);
 
-                    scoreLabel.setFont(new Font("Verdana", Font.BOLD, 22));
+                    scoreLabel.setFont(new Font("Candara Light", Font.BOLD, 22));
                     scoreLabel.setVisible(true);
                 }
 
@@ -239,8 +241,8 @@ public class RightAnswerGui {
     }
 
     /**
-     * Ξεκινάει τον γύρο εμφανίζοντας το frame
-     * Εμφανίζει το frame για το με το σκορ
+     * Ξεκινάει τον γύρο εμφανίζοντας το frame.
+     * Εμφανίζει το frame που περιλαμβάνει το σκορ.
      */
     public void game()  {
         frame.setVisible(true);
@@ -249,9 +251,10 @@ public class RightAnswerGui {
 
     /**
      *
-     * @param r
-     * @param solo
-     *Δημιουργάει το frame στο οποίο αναγράφετε ο γύρος και ο τύπος γύρου
+     * @param r Βοηθητική μεταβλητή για την τυχαία σειρά εμφάνισης των διαφόρων τύπων γύρων του παιχνιδιού
+     * @param solo Boolean μεταβλητή που καθορίζει αν το παιχνίδι παίζεται από έναν ή δύο παίκτες
+     *
+     *Δημιουργεί το frame στο οποίο αναγράφετε ο γύρος και ο τύπος γύρου.
      *
      */
     private void showRound(boolean[] r,boolean solo)
@@ -283,27 +286,27 @@ public class RightAnswerGui {
         fr.setVisible(true);
     }
     /**
-     * Εμφανίζει την σωστή απάντηση
+     * Εμφανίζει την σωστή απάντηση.
      */
     public void correctAnswer()  {
         question.setText("Η ΣΩΣΤΗ ΑΠΑΝΤΗΣΗ ΕΙΝΑΙ "+answer1);
-        question.setFont(new Font("Verdana",Font.BOLD,22));
+        question.setFont(new Font("Candara Light",Font.BOLD,22));
         question.setVisible(true);
     }
 
     /**
      *
-     * @param d
-     * @param menuFrame
-     * @param score
-     * @param solo
-     * @param rounds
+     * @param d Η βοηθητική κλάση DisplayQuestions για την εμφάνιση των ερωτήσεων
+     * @param menuFrame Το αρχικό μενού, το οποίο μπορεί να χρειαστεί να εμφανιστεί μετά το τέλος του γύρου
+     * @param score Το σκορ του παίκτη που διαγωνίζεται
+     * @param solo Boolean μεταβλητή που καθορίζει αν το παιχνίδι παίζεται από έναν ή δύο παίκτες
+     * @param rounds Βοηθητική μεταβλητή για την τυχαία σειρά εμφάνισης των διαφόρων τύπων γύρων του παιχνιδιού
      * @throws InterruptedException
      * @throws IOException
      *
-     * Εμφανίζει την καινούργια ερώτηση
-     * Ελέγχει αν είναι το τέλος του γύρου και προχωράει στον επόμενο
-     * Αν είναι το τέλος ξεκινάει απο την αρχή με το menu
+     * Εμφανίζει την καινούργια ερώτηση.
+     * Ελέγχει αν είναι το τέλος του γύρου και προχωράει στον επόμενο γύρο.
+     * Αν είναι το τέλος του παιχνιδιού ξεκινάει απο την αρχή εμφανίζοντας το κεντρικό menu.
      */
     private void updateQuestion(DisplayQuestions d,JFrame menuFrame,int score,boolean solo,boolean[] rounds) throws InterruptedException, IOException {
         counter++;
@@ -317,14 +320,13 @@ public class RightAnswerGui {
 
                 fr.setVisible(false);
 
-                //kalo to epomeno round me tixaiotita
+                //Κλήση επόμενου γύρου με τυχαιότητα
                 Random r=new Random();
                 int ran=0;
                 boolean flag=true;
                 for (int i=0;i<4;i++)
                     if (!rounds[i])
                         flag=false;
-
 
                 if(flag&&!solo)
                 {
@@ -371,8 +373,8 @@ public class RightAnswerGui {
     /**
      *
      * @param s το ήδη υπάρχων σκορ
-     * @return
-     * ανανεώνει το σκορ, στο frame του και στην μεταβλητή
+     * @return s
+     * Ανανεώνει το σκορ τόσο στο frame του όσο και στην μεταβλητή αποθηκευσής του.
      */
     private int updateScore(int s)
     {
@@ -386,8 +388,8 @@ public class RightAnswerGui {
         return s;
     }
     /**
-     * @param d
-     * ανανεώνει τις επιλογές και την απάντηση
+     * @param d Η βοηθητική κλάση DisplayQuestions για την εμφάνιση των ερωτήσεων
+     * Ανανεώνει τις πιθανές επιλογές και την απάντηση κάθε ερώτησης.
      */
     private void updateOptions(DisplayQuestions d)
     {

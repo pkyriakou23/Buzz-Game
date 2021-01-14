@@ -29,17 +29,18 @@ public class BettingGui {
     private JButton ans4;
     private JPanel ansBox;
     private JPanel questBox;
-
-
     private int Ascore,Bscore;
-
     private int counter;
     private int player;
     int scoreGain;
-
     String answer;
     String answer1;
 
+    /**
+     * Κατασκευαστής/ Constructor
+     * Αρχικοποιεί τις απαραίτητες μεταβλητές για την
+     * υλοποίηση των γραφικών και την ομαλή διεξαγωγή του γύρου ποντάρισμα.
+     */
     public BettingGui(){
         frame=new JFrame();
         fr=new JFrame();
@@ -64,9 +65,9 @@ public class BettingGui {
     }
 
     /**
-     *@param d
-     * Δημιουργείται frame το οποίο ζητάει απο τον παίκτη να τοποθετήση το bet του
-     * Προβάλει επίσης και την κατηγορία
+     *@param d Βοηθητική κλάση για την εμφάνιση των ερωτήσεων
+     * Δημιουργείται frame το οποίο ζητάει απο τον παίκτη να τοποθετήσει το ποντάρισμά του και
+     * προβάλει την κατηγορία στην οποία ανήκει η ερώτηση που πρόκυται να απαντήσει ο παίκτης.
      *
      */
     private void bettingFr(DisplayQuestions d)
@@ -160,59 +161,61 @@ public class BettingGui {
         betPanel.add(bet4);
 
         bettingFrame.add(betPanel);
-
-
     }
 
     /**
      *
-     * @param d
-     * @param menuFrame
-     * @param scoreA
-     * @param scoreB
-     * @param solo
-     * @param rounds
+     * @param d Η βοηθητική κλάση DisplayQuestions για την εμφάνιση των ερωτήσεων
+     * @param menuFrame Το αρχικό μενού, το οποίο μπορεί να χρειαστεί να εμφανιστεί μετά το τέλος του γύρου
+     * @param scoreA Το σκορ του 1ου παίκτη
+     * @param scoreB Το σκορ του 2ου παίκτη
+     * @param solo Boolean μεταβλητή που καθορίζει αν το παιχνίδι παίζεται από έναν ή δύο παίκτες
+     * @param rounds Βοηθητική μεταβλητή για την τυχαία σειρά εμφάνισης των διαφόρων τύπων γύρων του παιχνιδιού
      * @throws InterruptedException
-     * Φτίαχνει το frame με τις ερώτησεις και τις επιλόγες
+     *
+     * Φτίαχνει το frame με τις 5 ερώτησεις και τις πιθανές απαντήσεις τους. Ο παίκτης δίνει το ποντάρισμα του και ακολουθεί μία ερώτηση.
+     * Αν ο παίκτης απαντήσει σωστά το σκορ του αυξάνεται, διαφορετικά μειώνεται ανάλογα με το ποντάρισμα που έχει προηγηθεί.
+     * Εαν το παιχνίδι παίζεται από δύο παίκτες ο γύρος αυτός επαναλαμβάνεται με διαφορετικές ερωτήσεις.
      */
     public void QuestionsWindow(DisplayQuestions d,JFrame menuFrame,int scoreA,int scoreB,boolean solo,boolean[] rounds) throws InterruptedException
     {
+        //Δήλωση μοναδικότητας εμφάνισης του γύρου "Ποντάρισμα" στο παιχνίδι και έλεγχος για τον αριθμό των παικτών που παίζουν
         rounds[2]=true;
         if (solo)
             player=1;
        showRound(rounds,solo);
 
-
+        //Βοηθητικές μεταβλητές για διατήρηση του σκορ των δύο παικτών
         Ascore=scoreA;
         Bscore=scoreB;
 
+        //Σχεδιασμός παραθύρου εμφάνισης ερωτήσεων
         frame.setTitle("ΕΡΩΤΗΣΕΙΣ");
         frame.setSize(700,500);
         frame.setLocationRelativeTo(null);
         frame.setResizable(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        //Επιλογή ερώτησης και απαραίτητες ενέργειες για την εμφάνιση της στην οθόνη
         question.setText(d.questions(1));
         question.setAlignmentX(FlowLayout.LEFT);
         scoreLabel.setAlignmentX(FlowLayout.LEFT);
         questBox.add(question);
         questBox.add(scoreLabel);
-
         questBox.setLayout(new GridLayout(2,1));
 
+        //Επιλογή πιθανών απαντήσεων από την κλάση DisplayQuestions
         String[] options = new String[4];
 
-
-      updateOptions(d);
+        updateOptions(d);
 
         ans1.setSize(100, 100);
-        ans1.setFont(new Font("Verdana", Font.BOLD, 22));
-        ans2.setFont(new Font("Verdana", Font.BOLD, 22));
-        ans3.setFont(new Font("Verdana", Font.BOLD, 22));
-        ans4.setFont(new Font("Verdana", Font.BOLD, 22));
+        ans1.setFont(new Font("Candara Light", Font.BOLD, 22));
+        ans2.setFont(new Font("Candara Light", Font.BOLD, 22));
+        ans3.setFont(new Font("Candara Light", Font.BOLD, 22));
+        ans4.setFont(new Font("Candara Light", Font.BOLD, 22));
 
         ansBox.setLayout(new GridLayout(2, 2));
-        //   ansBox.setFont(new Font("Arial", Font.BOLD, 20));
         ansBox.add(ans1);
         ansBox.add(ans2);
         ansBox.add(ans3);
@@ -234,7 +237,7 @@ public class BettingGui {
                     else
                         Bscore=updateScore(Bscore,scoreGain);
 
-                    scoreLabel.setFont(new Font("Verdana", Font.BOLD, 22));
+                    scoreLabel.setFont(new Font("Candara Light", Font.BOLD, 22));
                     scoreLabel.setVisible(true);
                 }
                 else
@@ -245,7 +248,7 @@ public class BettingGui {
                     else
                         Bscore=updateScore(Bscore,(scoreGain*(-1)));
 
-                    scoreLabel.setFont(new Font("Verdana", Font.BOLD, 22));
+                    scoreLabel.setFont(new Font("Candara Light", Font.BOLD, 22));
                     scoreLabel.setVisible(true);
 
                 }
@@ -278,7 +281,7 @@ public class BettingGui {
                     else
                         Bscore=updateScore(Bscore,scoreGain);
 
-                    scoreLabel.setFont(new Font("Verdana", Font.BOLD, 22));
+                    scoreLabel.setFont(new Font("Candara Light", Font.BOLD, 22));
                     scoreLabel.setVisible(true);
                 }
                 else
@@ -289,7 +292,7 @@ public class BettingGui {
                     else
                         Bscore=updateScore(Bscore,(scoreGain*(-1)));
 
-                    scoreLabel.setFont(new Font("Verdana", Font.BOLD, 22));
+                    scoreLabel.setFont(new Font("Candara Light", Font.BOLD, 22));
                     scoreLabel.setVisible(true);
                 }
             }
@@ -318,7 +321,7 @@ public class BettingGui {
                         Ascore=updateScore(Ascore,scoreGain);
                     else
                         Bscore=updateScore(Bscore,scoreGain);
-                    scoreLabel.setFont(new Font("Verdana", Font.BOLD, 22));
+                    scoreLabel.setFont(new Font("Candara Light", Font.BOLD, 22));
                     scoreLabel.setVisible(true);
                 }
                 else
@@ -329,7 +332,7 @@ public class BettingGui {
                     else
                         Bscore=updateScore(Bscore,(scoreGain*(-1)));
 
-                    scoreLabel.setFont(new Font("Verdana", Font.BOLD, 22));
+                    scoreLabel.setFont(new Font("Candara Light", Font.BOLD, 22));
                     scoreLabel.setVisible(true);
 
                 }
@@ -360,7 +363,7 @@ public class BettingGui {
                     else
                         Bscore=updateScore(Bscore,scoreGain);
 
-                    scoreLabel.setFont(new Font("Verdana", Font.BOLD, 22));
+                    scoreLabel.setFont(new Font("Candara Light", Font.BOLD, 22));
                     scoreLabel.setVisible(true);
                 }
                 else
@@ -371,7 +374,7 @@ public class BettingGui {
                     else
                         Bscore=updateScore(Bscore,(scoreGain*(-1)));
 
-                    scoreLabel.setFont(new Font("Verdana", Font.BOLD, 22));
+                    scoreLabel.setFont(new Font("Candara Light", Font.BOLD, 22));
                     scoreLabel.setVisible(true);
 
                 }
@@ -396,9 +399,9 @@ public class BettingGui {
 
     /**
      *
-     * @param d
-     * Ξεκινάει τον γύρο εμφανίζοντας το frame για το ποντάρισμα
-     * Εμφανίζει το frame για το με το σκορ
+     * @param d Η βοηθητική κλάση DisplayQuestions για την εμφάνιση των ερωτήσεων
+     * Ξεκινάει τον γύρο εμφανίζοντας το frame για το ποντάρισμα.
+     * Εμφανίζει το frame παρουσίασης του σκορ του παίκτη μέχρι στιγμής.
      */
     public void game(DisplayQuestions d)  {
 
@@ -410,9 +413,10 @@ public class BettingGui {
 
     /**
      *
-     * @param r
-     * @param solo
-     * Δημιουργάει το frame στο οποίο αναγράφετε ο γύρος και ο τύπος γύρου
+     * @param r Βοηθητική μεταβλητή για την τυχαία σειρά εμφάνισης των διαφόρων τύπων γύρων του παιχνιδιού
+     * @param solo Boolean μεταβλητή που καθορίζει αν το παιχνίδι παίζεται από έναν ή δύο παίκτες
+     *
+     * Δημιουργεί το frame στο οποίο αναγράφετε ο αριθμός του γύρου και ο τύπος γύρου.
      */
     private void showRound(boolean[] r,boolean solo)
     {
@@ -447,24 +451,24 @@ public class BettingGui {
      */
     public void correctAnswer()  {
         question.setText("Η ΣΩΣΤΗ ΑΠΑΝΤΗΣΗ ΕΙΝΑΙ  "+answer1);
-        question.setFont(new Font("Verdana",Font.BOLD,22));
+        question.setFont(new Font("Candara Light",Font.BOLD,22));
         question.setVisible(true);
 
     }
 
     /**
      *
-     * @param d
-     * @param menuFrame
-     * @param score
-     * @param solo
-     * @param rounds
+     * @param d Η βοηθητική κλάση DisplayQuestions για την εμφάνιση των ερωτήσεων
+     * @param menuFrame Το αρχικό μενού, το οποίο μπορεί να χρειαστεί να εμφανιστεί μετά το τέλος του γύρου
+     * @param score Το σκορ του παίκτη που διαγωνίζεται
+     * @param solo Boolean μεταβλητή που καθορίζει αν το παιχνίδι παίζεται από έναν ή δύο παίκτες
+     * @param rounds Βοηθητική μεταβλητή για την τυχαία σειρά εμφάνισης των διαφόρων τύπων γύρων του παιχνιδιού
      * @throws InterruptedException
      * @throws IOException
      *
-     * Εμφανίζει την καινούργια ερώτηση
-     * Ελέγχει αν είναι το τέλος του γύρου και προχωράει στον επόμενο
-     * Αν είναι το τέλος ξεκινάει απο την αρχή με το menu
+     * Εμφανίζει την καινούργια ερώτηση.
+     * Ελέγχει αν είναι το τέλος του γύρου και προχωράει στον επόμενο.
+     * Αν είναι το τέλος ξεκινάει απο την αρχή με την εμφάνιση του κεντρικού menu.
      */
     private void updateQuestion(DisplayQuestions d,JFrame menuFrame,int score,boolean solo,boolean[] rounds) throws InterruptedException, IOException {
         counter++;
@@ -481,7 +485,7 @@ public class BettingGui {
                 frame.setVisible(false);
                 bettingFrame.setVisible(false);
                 fr.setVisible(false);
-                //kalo to epomeno round me tixaiotita
+                //Κλήση επόμενου γύρου με τυχαιότητα
                 Random r=new Random();
                 int ran=0;
                 boolean flag=true;
@@ -490,15 +494,12 @@ public class BettingGui {
                         flag=false;
                 if(flag&&!solo)
                 {
-                    //THERMOMETRO
                     ThermometerGUI t=new ThermometerGUI();
                     t.showRoundScreen(d,menuFrame,Ascore,Bscore,solo,rounds);
                 }else if(flag){
                     ScoreFile s=new ScoreFile();
                     s.setHighScore(Ascore);
                 }
-
-
                 while(!flag)
                 {
                     ran=r.nextInt(4);
@@ -521,18 +522,11 @@ public class BettingGui {
                             FastAnswerGUI f=new FastAnswerGUI();
                             f.fastAnswerQuestions(d,menuFrame,Ascore,Bscore,solo,rounds);
                         }
-
-
-
-
                         flag=true;
                     }
-
                 }
                 menuFrame.setVisible(true);
                 fScore.setVisible(false);
-
-
             }
         }
         else {
@@ -540,15 +534,14 @@ public class BettingGui {
             frame.setVisible(false);
             bettingFrame.setVisible(true);
         }
-
     }
 
     /**
      *
-     * @param s το ήδη υπάρχων σκορ
-     * @param score το ποντάρισμα του
-     * @return
-     * ανανεώνει το σκορ, στο frame του και στην μεταβλητή
+     * @param s Το ήδη υπάρχων σκορ
+     * @param score το ποντάρισμα του παίκτη
+     * @return s
+     * Ανανεώνει το σκορ τόσο στο frame παρουσίασης του όσο και στην μεταβλητή που το αποθηκεύει.
      */
     private int updateScore(int s,int score)
     {
@@ -563,8 +556,8 @@ public class BettingGui {
 
     /**
      *
-     * @param d
-     * ανανεώνει τις επιλογές και την απάντηση
+     * @param d Η βοηθητική κλάση DisplayQuestions για την εμφάνιση των ερωτήσεων
+     * Ανανεώνει τις πιθανές επιλογές και την απάντηση.
      */
     private void updateOptions(DisplayQuestions d)
     {

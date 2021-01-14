@@ -2,12 +2,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 
+/**
+ * Κλάση η οποία υλοποιεί την οντότητα των παικτών στο παιχνίδι.
+ */
 public class PlayersGUI {
 
     private JPanel playerPanel;
@@ -18,9 +18,14 @@ public class PlayersGUI {
     private String nameA,nameB;
     private boolean done;
     private int scoreA,scoreB;
-    private int numberOfRoundsA,numberOfRoundsB;
+    private int numberOfRoundsA;
     private Round r;
 
+    /**
+     * Κατασκευαστής/ Constructor
+     * Αρχικοποιεί τις απαραίτητες μεταβλητές για την
+     * υλοποίηση των γραφικών και την επιλογή του αριθμού των παικτών.
+     */
     public PlayersGUI(){
         playersFrame=new JFrame();
         playersChoice1=new JButton();
@@ -33,17 +38,24 @@ public class PlayersGUI {
         scoreA=0;
         numberOfRoundsA=0;
         scoreB=0;
-        numberOfRoundsB=0;
         r=new Round();
     }
 
+    /**
+     * Συνάρτηση η οποία βοηθά στην επιλογή ενός ή δύο παικτών για την διεξαγωγή του παιχνιδιού.
+     * Αν ο χρήστης επιλέξει ότι θα παίξει με έναν παίκτη τότε εμφανίζεται ένα πλαίσιο για την καταχώρηση του ονόματος
+     * του παίκτη και έπειτα ένα πλαίσιο για επιβεβαίωση αυτού του ονόματος. Αντίστοιχα αν ο χρήστης κάνει την επιλογή των
+     * δύο παικτών εμφανίζεται για τον κάθε παίκτη το αντίστοιχο πλαίσιο καταχώρησης του ονόματός του και το πλαίσιο επιβεβαίωσης.
+     *
+     * @param mainScreen
+     */
     public void choosePlayer(JFrame mainScreen){
 
         playersChoice1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 solo=true;
-                UIManager.put("OptionPane.messageFont", new Font("Snap ITC", Font.PLAIN, 20));
+                UIManager.put("OptionPane.messageFont", new Font("Candara Light", Font.PLAIN, 20));
                 nameA = JOptionPane.showInputDialog(null,"NAME: ");
                 if(nameA!=null) {
                     JOptionPane.showMessageDialog(null, "PLAYER1: " + nameA);
@@ -70,7 +82,7 @@ public class PlayersGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 solo=false;
-                UIManager.put("OptionPane.messageFont", new Font("Snap ITC", Font.PLAIN, 20));
+                UIManager.put("OptionPane.messageFont", new Font("Candara Light", Font.PLAIN, 20));
                 nameA = JOptionPane.showInputDialog("NAME: ");
                 if(nameA!=null)
                     JOptionPane.showMessageDialog(null, "PLAYER1: " + nameA);
@@ -114,36 +126,56 @@ public class PlayersGUI {
         playersFrame.setVisible(true);
     }
 
+    /**
+     * Συνάρτηση η οποία επιστρέφει το όνομα του 1ου παίκτη.
+     * @return nameA
+     */
     public String getNameA(){
         return nameA;
     }
 
+    /**
+     * Συνάρτηση η οποία επιστρέφει το όνομα του 2ου παίκτη.
+     * @return nameB
+     */
     public String getNameB(){
         return nameB;
     }
 
+    /**
+     * Συνάρτηση η οποία επιστρέφει μία boolean μεταβλητή που έχει την τιμή true εαν ο παίκτης
+     * είναι ένας. Διαφορετικά επιστρέφει την τιμή false που καθορίζει ότι το παιχνίδι παίζεται
+     * ανταγωνιστηκά ανάμεσα σε δύο παίκτες.
+     * @return solo
+     */
     public boolean getNumberOfPlayers(){
         return solo;
     }
 
+    /**
+     * Συνάρτηση η οποία επιτρέφει την τιμή true εαν η διαδικασία επιλογής αριθμού παικτών και
+     * καταχώρησης των ονομάτων τους έχει ολοκληρωθεί.
+     * @return done
+     */
     public boolean getDone(){
         return done;
     }
 
+    /**
+     * Συνάρτηση η οποία υλοποιεί την παρουσίαση του κουμπιού info
+     * στην αρχική οθόνη του menu του παιχνιδιού.
+     */
     public void playerInfo(){
         JLabel label=new JLabel(nameA);
         label.setFont(new Font("Snap ITC", Font.BOLD, 20));
         JOptionPane.showConfirmDialog(null,label,"INFO",JOptionPane.YES_OPTION);
     }
 
-    public int setNumOfRoundsA(){
-        return (numberOfRoundsA++);
-    }
-
-    public void setNumOfRoundsB(){
-        numberOfRoundsB++;
-    }
-
+    /**
+     * Συνάρτηση η οποία καταγράφει τα ονόματα των παικτών, σε περίπτωση ανταγωνιστικού παιχνιδιού,
+     * σε αρχείο με το όνομα names.txt, έτσι ώστε να μπορούν να εμφανιστούν όποτε είναι απαραίτητο.
+     * @throws IOException
+     */
     public void write() throws IOException {
         try {
             FileWriter out = new FileWriter("names.txt");
@@ -153,7 +185,7 @@ public class PlayersGUI {
             out.close();
         }
         catch (IOException e) {
-            System.out.println("provlima");
+            System.out.println("An error occurred");
         }
     }
 
