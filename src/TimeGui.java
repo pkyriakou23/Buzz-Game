@@ -336,11 +336,11 @@ public class TimeGui {
                     t.showRoundScreen(d,menuFrame,Ascore,Bscore,solo,rounds);
                 }
                 if(flag){
+                    menuFrame.setVisible(true);
                     ScoreFile s=new ScoreFile();
                     s.setHighScore(Ascore);
                     ScoreButtonGUI sb =new ScoreButtonGUI();
                     sb.showScore();
-                    menuFrame.setVisible(true);
                 }
                 while(!flag)
                 {
